@@ -67,7 +67,7 @@ PrityPrint.prototype.visitDeclaracionClase = function (ctx) {
     cont--;
     return null;
 
-}
+};
 
 PrityPrint.prototype.visitConstante = function (ctx) {
 
@@ -78,7 +78,7 @@ PrityPrint.prototype.visitConstante = function (ctx) {
     PrityPrint.visit(ctx.numStr());
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitNumero = function (ctx) {
     printtab(cont);
@@ -86,38 +86,38 @@ PrityPrint.prototype.visitNumero = function (ctx) {
     cont++;
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitChar = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.CHAR.symbol.text;
+    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.CHAR().getSymbol().text;
     cont++;
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitVariable = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
     cont++;
     PrityPrint.visit(ctx.type());
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitClase = function (ctx){
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
     for (i=0;i<ctx.classDecl().length;i++) {
         PrityPrint.visit(ctx.varDecl(i));
     }
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitMetodo = function (ctx){
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
     cont++;
     PrityPrint.visit(ctx.tipoMet());
 
@@ -136,28 +136,28 @@ PrityPrint.prototype.visitMetodo = function (ctx){
     cont--;
 
     return null;
-}
+};
 
 PrityPrint.prototype.visitTipoDecla = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
     cont++;
     PrityPrint.visit(ctx.type());
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitVoid = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.VOID.symbol.text;
+    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.VOID().getSymbol().text;
     cont++;
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitDefVarMul = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
     cont++;
     PrityPrint.visit(ctx.type());
     for (i=0;i<ctx.formPars().length;i++) {
@@ -165,69 +165,69 @@ PrityPrint.prototype.visitDefVarMul = function (ctx) {
     }
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitIntT = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.INT.symbol.text;
+    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.INT().getSymbol().text;
     cont++;
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitCharT = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.CHAR.symbol.text;
+    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.CHAR().getSymbol().text;
     cont++;
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitFloatT = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.FLOAT.symbol.text;
+    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.FLOAT().getSymbol().text;
     cont++;
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitBoolT = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.BOOL.symbol.text;
+    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.BOOL().getSymbol().text;
     cont++;
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitStringT = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.STRING.symbol.text;
+    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.STRING().getSymbol().text;
     cont++;
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitIdT = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.IDENTIFIER.symbol.text;
+    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.IDENTIFIER().getSymbol().text;
     cont++;
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitDesigClassdef = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
     cont++;
     PrityPrint.visit(ctx.designator());
     PrityPrint.visit(ctx.asignation());
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitIfelseDef = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
     cont++;
     PrityPrint.visit(ctx.condition());
     PrityPrint.visit(ctx.statement());
@@ -240,11 +240,11 @@ PrityPrint.prototype.visitIfelseDef = function (ctx) {
     PrityPrint.visit(ctx.statement());
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitForDef = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
     cont++;
     PrityPrint.visit(ctx.expr());
     try{
@@ -262,36 +262,37 @@ PrityPrint.prototype.visitForDef = function (ctx) {
     PrityPrint.visit(ctx.statement());
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitWhileDef = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
     cont++;
     PrityPrint.visit(ctx.condition());
     PrityPrint.visit(ctx.statement());
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitForeachDef = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
     cont++;
     PrityPrint.visit(ctx.statement());
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitBreak = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.BRAKE.symbol.text;
-    textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.PUNTOCOMA.symbol.text;
+    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.BRAKE().symbol.text;
+    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.PUNTOCOMA.symbol.text;
     cont++;
     PrityPrint.visit(ctx.statement());
     cont--;
     return null;
-}
+};
+
 PrityPrint.prototype.visitReturnDef = function (ctx) {
     printtab(cont);
     textArea.innerHTML = textArea.innerHTML + ctx.name;
@@ -301,7 +302,7 @@ PrityPrint.prototype.visitReturnDef = function (ctx) {
     }
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitReadDef = function (ctx) {
     printtab(cont);
@@ -310,7 +311,7 @@ PrityPrint.prototype.visitReadDef = function (ctx) {
     PrityPrint.visit(ctx.designator());
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitWriteDef = function (ctx) {
     printtab(cont);
@@ -324,7 +325,7 @@ PrityPrint.prototype.visitWriteDef = function (ctx) {
     textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.PUNTOCOMA.symbol.text;
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitBlockDef = function (ctx) {
     printtab(cont);
@@ -333,7 +334,7 @@ PrityPrint.prototype.visitBlockDef = function (ctx) {
     PrityPrint.visit(ctx.block());
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitPuntoComa = function (ctx) {
     printtab(cont);
@@ -341,7 +342,7 @@ PrityPrint.prototype.visitPuntoComa = function (ctx) {
     cont++;
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitAsignacion = function (ctx) {
     printtab(cont);
@@ -352,7 +353,7 @@ PrityPrint.prototype.visitAsignacion = function (ctx) {
     }
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitLista = function (ctx) {
     printtab(cont);
@@ -361,7 +362,7 @@ PrityPrint.prototype.visitLista = function (ctx) {
     PrityPrint.visit(ctx.expr());
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitMenosmenos = function (ctx) {
     printtab(cont);
@@ -370,7 +371,7 @@ PrityPrint.prototype.visitMenosmenos = function (ctx) {
     textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.AUMENTO.symbol.text;
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitMasmas = function (ctx) {
     printtab(cont);
@@ -379,7 +380,7 @@ PrityPrint.prototype.visitMasmas = function (ctx) {
     textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.DISMINUCION.symbol.text;
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitBloque = function (ctx) {
     printtab(cont);
@@ -390,7 +391,7 @@ PrityPrint.prototype.visitBloque = function (ctx) {
     }
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitParteLista = function (ctx) {
     printtab(cont);
@@ -403,7 +404,7 @@ PrityPrint.prototype.visitParteLista = function (ctx) {
     }
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitCondicion = function (ctx) {
     printtab(cont);
@@ -416,7 +417,7 @@ PrityPrint.prototype.visitCondicion = function (ctx) {
     }
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitCTerm = function (ctx) {
     printtab(cont);
@@ -429,7 +430,7 @@ PrityPrint.prototype.visitCTerm = function (ctx) {
     }
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitCFact = function (ctx) {
     printtab(cont);
@@ -440,7 +441,7 @@ PrityPrint.prototype.visitCFact = function (ctx) {
     PrityPrint.visit(ctx.expr());
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitExpresion = function (ctx) {
     printtab(cont);
@@ -454,7 +455,7 @@ PrityPrint.prototype.visitExpresion = function (ctx) {
     }
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitTermino = function (ctx) {
     printtab(cont);
@@ -467,7 +468,7 @@ PrityPrint.prototype.visitTermino = function (ctx) {
     }
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitAsignador = function (ctx) {
     printtab(cont);
@@ -482,7 +483,7 @@ PrityPrint.prototype.visitAsignador = function (ctx) {
     }
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitFactorNumero = function (ctx) {
     printtab(cont);
@@ -491,7 +492,7 @@ PrityPrint.prototype.visitFactorNumero = function (ctx) {
     textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.NUMBER.symbol.text;
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitFactorCaracter = function (ctx) {
     printtab(cont);
@@ -500,7 +501,7 @@ PrityPrint.prototype.visitFactorCaracter = function (ctx) {
     textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.CHAR.symbol.text;
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitAsignador = function (ctx) {
     printtab(cont);
@@ -509,7 +510,7 @@ PrityPrint.prototype.visitAsignador = function (ctx) {
     PrityPrint.visit(ctx.booleano());
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitFactorNumero = function (ctx) {
     printtab(cont);
@@ -517,7 +518,7 @@ PrityPrint.prototype.visitFactorNumero = function (ctx) {
     cont++;
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitFactorCaracter = function(ctx) {
     printtab(cont);
