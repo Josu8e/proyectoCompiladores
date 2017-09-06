@@ -1,7 +1,7 @@
 var antlr4 = require('antlr4/index');
 var CParser = require('generated/CParser');
 var CScanner = require('generated/CScanner');
-//var VisitorA = require('JavaScripts/prityPrint');
+var VisitorA = require('JavaScripts/prityPrint');
 
 
 function analisisSintactico() {
@@ -16,9 +16,10 @@ function analisisSintactico() {
     var tokens = new antlr4.CommonTokenStream(lexer);
     var parser = new CParser.CParser(tokens);
     parser.buildParseTrees = true;
-    var tree = parser.program();console.log(tree);
-    //var visitorA = new VisitorA.PrityPrint();
-    //visitorA.visitProgramDef(tree);
+    var tree = parser.program();
+    //console.log(tree);
+    var visitorA = new VisitorA.PrityPrint();
+    visitorA.visit(tree);
 
 
 }

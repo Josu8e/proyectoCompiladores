@@ -7,8 +7,8 @@ function PrityPrint() {
 
 }
 
-PrityPrint.prototype=(Object.create(gramarVisitor.prototype));
-PrityPrint.prototype.constructor = prityPrint();
+PrityPrint.prototype=Object.create(gramarVisitor.prototype);
+PrityPrint.prototype.constructor = PrityPrint;
 
 var textArea = document.getElementById('consola');
 
@@ -21,12 +21,12 @@ function printtab(n) {
     textArea.innerHTML = '\n' + textArea.innerHTML + ">";
 
     return null;
-}
+};
 
 
 PrityPrint.prototype.visitProgramDef = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
     cont++;
     for (i=0;i<ctx.declarations().length;i++) {
         PrityPrint.visit(ctx.declarations(i));
@@ -38,30 +38,30 @@ PrityPrint.prototype.visitProgramDef = function (ctx) {
     }
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitDeclaracionConst = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
     cont++;
     PrityPrint.visit(ctx.constDecl());
     cont--;
     return null;
-}
+};
 
 PrityPrint.prototype.visitDeclaracionVariable = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
     cont++;
     PrityPrint.visit(ctx.varDecl());
     cont--;
     return null;
 
-}
+};
 
 PrityPrint.prototype.visitDeclaracionClase = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
     cont++;
     PrityPrint.visit(ctx.classDecl());
     cont--;
@@ -72,7 +72,7 @@ PrityPrint.prototype.visitDeclaracionClase = function (ctx) {
 PrityPrint.prototype.visitConstante = function (ctx) {
 
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
     cont++;
     PrityPrint.visit(ctx.type());
     PrityPrint.visit(ctx.numStr());
@@ -82,7 +82,7 @@ PrityPrint.prototype.visitConstante = function (ctx) {
 
 PrityPrint.prototype.visitNumero = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name + ctx.NUMBER.symbol.text;
+    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name + ctx.NUMBER().getSymbol().text;
     cont++;
     cont--;
     return null;

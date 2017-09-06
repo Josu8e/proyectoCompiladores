@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c482b11c-ad74-4d7e-8fc0-5b254f22ee0e" name="Default" comment="" />
+    <list default="true" id="c482b11c-ad74-4d7e-8fc0-5b254f22ee0e" name="Default" comment="cambios en el prity print no terminados, error resuelto del reconocimiento del prityprint">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CParser.g4" afterPath="$PROJECT_DIR$/CParser.g4" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JavaScripts/prityPrint.js" afterPath="$PROJECT_DIR$/JavaScripts/prityPrint.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analisisSintactico.js" afterPath="$PROJECT_DIR$/analisisSintactico.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/generated/CParser.js" afterPath="$PROJECT_DIR$/generated/CParser.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/generated/CParserVisitor.js" afterPath="$PROJECT_DIR$/generated/CParserVisitor.js" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -14,21 +22,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="prityPrint.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="prityPrint.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/JavaScripts/prityPrint.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-442">
-              <caret line="4" column="29" lean-forward="false" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+            <state relative-caret-position="17">
+              <caret line="12" column="2" lean-forward="true" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="analisisSintactico.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="analisisSintactico.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/analisisSintactico.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="50" lean-forward="true" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
+            <state relative-caret-position="289">
+              <caret line="17" column="34" lean-forward="false" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -37,8 +45,8 @@
       <file leaf-file-name="CParserVisitor.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/generated/CParserVisitor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6613">
-              <caret line="393" column="22" lean-forward="false" selection-start-line="393" selection-start-column="8" selection-end-line="393" selection-end-column="22" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -47,8 +55,8 @@
       <file leaf-file-name="CParser.g4" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CParser.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="33" column="41" lean-forward="false" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
+            <state relative-caret-position="331">
+              <caret line="88" column="31" lean-forward="false" selection-start-line="88" selection-start-column="26" selection-end-line="88" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -57,7 +65,7 @@
       <file leaf-file-name="CScanner.g4" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CScanner.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
+            <state relative-caret-position="1071">
               <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
               <folding />
             </state>
@@ -75,9 +83,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>DefVarMul</find>
-      <find>DesigClassdef</find>
-      <find>IfelseDef</find>
       <find>ForDef</find>
       <find>WhileDef</find>
       <find>Break</find>
@@ -105,7 +110,13 @@
       <find>factorNume</find>
       <find>visitAsignador</find>
       <find>Termino</find>
+      <find>identifier asign</find>
+      <find>asign</find>
+      <find>punto</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -118,10 +129,11 @@
         <option value="$PROJECT_DIR$/antlr4/error/Errors.js" />
         <option value="$PROJECT_DIR$/antlr4/error/ErrorStrategy.js" />
         <option value="$PROJECT_DIR$/antlr4/error/DiagnosticErrorListener.js" />
-        <option value="$PROJECT_DIR$/CParser.g4" />
         <option value="$PROJECT_DIR$/prityPrint.js" />
-        <option value="$PROJECT_DIR$/JavaScripts/prityPrint.js" />
+        <option value="$PROJECT_DIR$/CParser.g4" />
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/analisisSintactico.js" />
+        <option value="$PROJECT_DIR$/JavaScripts/prityPrint.js" />
       </list>
     </option>
   </component>
@@ -151,6 +163,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -162,32 +175,36 @@
             <path>
               <item name="Nueva carpeta" type="b2602c69:ProjectViewProjectNode" />
               <item name="Nueva carpeta" type="462c0819:PsiDirectoryNode" />
+              <item name="generated" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Nueva carpeta" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Nueva carpeta" type="462c0819:PsiDirectoryNode" />
               <item name="JavaScripts" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/generated" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="$PROJECT_DIR$/CParser.g4::/auto-gen" value="false" />
-    <property name="$PROJECT_DIR$/CParser.g4::/output-dir" value="C:\Users\katty\Dropbox\compi\Nueva carpeta\" />
+    <property name="$PROJECT_DIR$/CParser.g4::/output-dir" value="J:\tec\compi\Nueva carpeta" />
     <property name="$PROJECT_DIR$/CParser.g4::/package" value="generated" />
     <property name="$PROJECT_DIR$/CParser.g4::/language" value="JavaScript" />
-    <property name="$PROJECT_DIR$/CParser.g4::/gen-listener" value="true" />
+    <property name="$PROJECT_DIR$/CParser.g4::/gen-listener" value="false" />
     <property name="$PROJECT_DIR$/CParser.g4::/gen-visitor" value="true" />
     <property name="$PROJECT_DIR$/CScanner.g4::/auto-gen" value="false" />
-    <property name="$PROJECT_DIR$/CScanner.g4::/output-dir" value="C:\Users\katty\Dropbox\compi\Nueva carpeta\" />
+    <property name="$PROJECT_DIR$/CScanner.g4::/output-dir" value="J:\tec\compi\Nueva carpeta" />
     <property name="$PROJECT_DIR$/CScanner.g4::/package" value="generated" />
     <property name="$PROJECT_DIR$/CScanner.g4::/language" value="JavaScript" />
-    <property name="$PROJECT_DIR$/CScanner.g4::/gen-listener" value="true" />
+    <property name="$PROJECT_DIR$/CScanner.g4::/gen-listener" value="false" />
     <property name="$PROJECT_DIR$/CScanner.g4::/gen-visitor" value="true" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
   </component>
@@ -238,26 +255,29 @@
       <workItem from="1504209521505" duration="3744000" />
       <workItem from="1504213427951" duration="3620000" />
       <workItem from="1504217106368" duration="3772000" />
+      <workItem from="1504729893086" duration="3979000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42629000" />
+    <option name="totallyTimeSpent" value="46608000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16071428" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.49702382" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280507" sideWeight="0.5029762" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3223684" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967105" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967105" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -304,19 +324,15 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="cambios en el prity print no terminados, error resuelto del reconocimiento del prityprint" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambios en el prity print no terminados, error resuelto del reconocimiento del prityprint" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CParser.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/generated/CParser.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -555,13 +571,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/require.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -631,29 +640,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="54" column="4" lean-forward="false" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/generated/CParserVisitor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6613">
-          <caret line="393" column="22" lean-forward="false" selection-start-line="393" selection-start-column="8" selection-end-line="393" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JavaScripts/prityPrint.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-442">
-          <caret line="4" column="29" lean-forward="false" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CScanner.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
+        <state relative-caret-position="1071">
           <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
           <folding />
         </state>
@@ -661,16 +653,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CParser.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="41" lean-forward="false" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
+        <state relative-caret-position="331">
+          <caret line="88" column="31" lean-forward="false" selection-start-line="88" selection-start-column="26" selection-end-line="88" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generated/CParserVisitor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/analisisSintactico.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="50" lean-forward="true" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
+        <state relative-caret-position="289">
+          <caret line="17" column="34" lean-forward="false" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaScripts/prityPrint.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="12" column="2" lean-forward="true" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
           <folding />
         </state>
       </provider>

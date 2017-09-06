@@ -1,4 +1,4 @@
-// Generated from C:/Users/katty/Dropbox/compi/Nueva carpeta\CParser.g4 by ANTLR 4.7
+// Generated from J:/tec/compi/Nueva carpeta\CParser.g4 by ANTLR 4.7
 // jshint ignore: start
 var antlr4 = require('antlr4/index');
 

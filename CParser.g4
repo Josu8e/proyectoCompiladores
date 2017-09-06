@@ -4,7 +4,7 @@ options{
     tokenVocab=CScanner;
 }
 
-program	                : CLASS IDENTIFIER (declarations)* CORCHETEIZQ  (methodDecl)* CORCHETEDER       #programDef
+program	                : CLASS IDENTIFIER (declarations)* CORCHETEIZQ  (methodDecl)* CORCHETEDER EOF   #programDef
                         ;
 declarations            : constDecl                                                                     #declaracionConst
                         | varDecl                                                                       #declaracionVariable
