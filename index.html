@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Editor Compiladores</title>
+	<link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>  
+    <script src="textarea-as-ace-editor.js"></script>
+    <script>
+      $( document ).ready(function() {
+        $("textarea").asAceEditor();
+
+      });
+    </script>
+ 
+</head>
+ <body>
+
+
+	<img src="imagenes/logoTec.png" >
+	<div id="botones">
+
+		<div id="fileOutput" style='position:absolute;height: 0px;width: 0%; overflow:hidden;'></div>
+		<input  id="file-input" style='position:absolute;height: 0px;width: 0%; overflow:hidden;' type="file"/></input>
+		<button id="Abrir" onclick="getElementById('file-input').click()"></button>
+
+		
+
+		<div style='position:absolute;height: 0px;width: 0%; overflow:hidden;'></div>
+		<button class="button" id="guardar" type="button"></button>
+
+
+		<button class="button" id="Sintactico" onclick="analisisSintactico()"></button>
+		<button class="button" id="Contextual"></button>
+		<button class="button" id="Generar"></button>
+	</div>
+	<br>
+	<br>
+	<div id="textarea">
+		<br>
+		<textarea rows="10" cols="80" id="contenidoarchivo" ></textarea>
+    <textarea placeholder="Consola" id="consola" readonly></textarea>
+	</div>
+
+
+
+</body>
+
+<script src="require.js"></script>
+<script src="js.js"></script>
+
+<script src="analisisSintactico.js"></script>
+
+
+
+
+</html>

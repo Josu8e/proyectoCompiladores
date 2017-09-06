@@ -1,0 +1,95 @@
+body{
+	background-color: black !important; 
+	margin: 50px;
+	padding: 50px;
+}
+
+#idle{
+	width: 100%;
+	height: 200px;
+	padding: 15px;
+}
+
+#textarea{
+	width: 50%;
+	margin: auto;
+    width: 50%;
+    padding: 10px;
+	box-shadow:1px 1px 5px #fff;
+}
+
+#botones{
+	margin: auto;
+    width: 50%;
+    padding-left: 10%;
+    
+
+}
+
+#consola{
+	width: 100%;
+	height: 50;
+	padding: 15px;
+	background-color: #1b1b1b; 
+	box-shadow:1px 1px 5px #fff;
+    color: white;
+
+}
+
+img{
+	width: 50%;    
+	height: 50%;
+	padding-left: 25%;
+	margin: 50px;
+}
+
+.botones{
+	margin-left: 5px; 
+}
+#Abrir{
+	background-image: url("imagenes/open-folder.svg"); 
+
+}
+
+
+
+#guardar{
+	background-image: url("imagenes/save.svg"); 
+
+
+}
+#Sintactico{
+	background-image: url("imagenes/network.svg"); 
+
+}
+
+#Contextual{
+	background-image: url("imagenes/contract.svg"); 
+	
+}
+
+#Generar{
+	background-image: url("imagenes/management.svg"); 
+	
+}
+button{
+	height: 40px;
+	width: 40px;
+	padding: 5px;
+	border-radius: 10px;
+	box-shadow:1px 1px 5px #fff;
+	margin: 5px;
+}
+
+button:hover{
+	box-shadow:1px 1px 5px #dbe014;
+
+}
+
+#editor { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
