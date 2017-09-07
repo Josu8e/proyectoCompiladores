@@ -9,7 +9,7 @@ function analisisSintactico() {
     editor = $('textarea').data('ace-editor');
 
     var textArea = document.getElementById('consola');
-    textArea.innerHTML = '';
+    textArea.Value = "";
     var input = editor.getValue();//document.getElementById('contenidoarchivo').Value;
     var chars = new antlr4.InputStream(input);
     var lexer = new CScanner.CScanner(chars);

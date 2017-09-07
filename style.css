@@ -13,7 +13,7 @@ body{
 #textarea{
 	width: 50%;
 	margin: auto;
-    width: 50%;
+    width: 80%;
     padding: 10px;
 	box-shadow:1px 1px 5px #fff;
 }
@@ -28,9 +28,8 @@ body{
 
 #consola{
 	width: 100%;
-	height: 50;
-	padding: 15px;
-	background-color: #1b1b1b; 
+	height: 300px;
+	background-color: #1b1b1b;
 	box-shadow:1px 1px 5px #fff;
     color: white;
 
