@@ -16,9 +16,9 @@ var cont = 0;
 
 function printtab(n) {
     for (num = n; num != 0; num--) {
-        textArea.innerHTML = '\n' + textArea.innerHTML + "+++";
+        textArea.innerHTML +=  textArea.innerHTML + "\n+++";
     }
-    textArea.innerHTML = '\n' + textArea.innerHTML + ">";
+    textArea.innerHTML += textArea.innerHTML + ">";
 
     return null;
 };
@@ -26,15 +26,17 @@ function printtab(n) {
 
 PrityPrint.prototype.visitProgramDef = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    for (i=0;i<ctx.declarations().length;i++) {
-        PrityPrint.visit(ctx.declarations(i));
+    this.visit(ctx.declarations(0));
+    for (i=1;i<ctx.declarations().length-1;i++) {
+        this.visit(ctx.declarations(i));
     }
     cont--;
     cont++;
-    for (i=0;i<ctx.methodDecl().length;i++) {
-        PrityPrint.visit(ctx.methodDecl(i));
+    this.visit(ctx.methodDecl(0));
+    for (i=1;i<ctx.methodDecl().length-1;i++) {
+        this.visit(ctx.methodDecl(i));
     }
     cont--;
     return null;
@@ -42,18 +44,18 @@ PrityPrint.prototype.visitProgramDef = function (ctx) {
 
 PrityPrint.prototype.visitDeclaracionConst = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.constDecl());
+    this.visit(ctx.constDecl());
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitDeclaracionVariable = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.varDecl());
+    this.visit(ctx.varDecl());
     cont--;
     return null;
 
@@ -61,9 +63,9 @@ PrityPrint.prototype.visitDeclaracionVariable = function (ctx) {
 
 PrityPrint.prototype.visitDeclaracionClase = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.classDecl());
+    this.visit(ctx.classDecl());
     cont--;
     return null;
 
@@ -72,17 +74,17 @@ PrityPrint.prototype.visitDeclaracionClase = function (ctx) {
 PrityPrint.prototype.visitConstante = function (ctx) {
 
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.type());
-    PrityPrint.visit(ctx.numStr());
+    this.visit(ctx.type());
+    this.visit(ctx.numStr());
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitNumero = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name + ctx.NUMBER().getSymbol().text;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name + " " + ctx.NUMBER().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -90,7 +92,7 @@ PrityPrint.prototype.visitNumero = function (ctx) {
 
 PrityPrint.prototype.visitChar = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.CHAR().getSymbol().text;
+    textArea.innerHTML += + textArea.innerHTML + " " + ctx.constructor.name + " " + ctx.CHAR().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -98,18 +100,19 @@ PrityPrint.prototype.visitChar = function (ctx) {
 
 PrityPrint.prototype.visitVariable = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.type());
+    this.visit(ctx.type());
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitClase = function (ctx){
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
-    for (i=0;i<ctx.classDecl().length;i++) {
-        PrityPrint.visit(ctx.varDecl(i));
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
+    this.visit(ctx.classDecl(0));
+    for (i=1;i<ctx.classDecl().length-1;i++) {
+        this.visit(ctx.varDecl(i));
     }
     cont--;
     return null;
@@ -117,22 +120,22 @@ PrityPrint.prototype.visitClase = function (ctx){
 
 PrityPrint.prototype.visitMetodo = function (ctx){
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.tipoMet());
+    this.visit(ctx.tipoMet());
 
     try{
-        PrityPrint.visit(ctx.formPars());
+        this.visit(ctx.formPars());
     }
     catch(err){
 
     }
-
-    for (i=0;i<ctx().methodDecl().length;i++) {
-        PrityPrint.visit(ctx.varDecl(i));
+    this.visit(ctx.methodDecl(0));
+    for (i=1;i<ctx().methodDecl().length-1;i++) {
+        this.visit(ctx.varDecl(i));
     }
 
-    PrityPrint.visit(ctx.block());
+    this.visit(ctx.block());
     cont--;
 
     return null;
@@ -140,16 +143,16 @@ PrityPrint.prototype.visitMetodo = function (ctx){
 
 PrityPrint.prototype.visitTipoDecla = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.type());
+    this.visit(ctx.type());
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitVoid = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.VOID().getSymbol().text;
+    textArea.innerHTML += + textArea.innerHTML + " " + ctx.constructor.name + " " + ctx.VOID().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -157,11 +160,11 @@ PrityPrint.prototype.visitVoid = function (ctx) {
 
 PrityPrint.prototype.visitDefVarMul = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.type());
-    for (i=0;i<ctx.formPars().length;i++) {
-        PrityPrint.visit(ctx.type(i));
+    this.visit(ctx.type(0));
+    for (i=1;i<ctx.type().length-1;i++) {
+        this.visit(ctx.type(i));
     }
     cont--;
     return null;
@@ -169,7 +172,7 @@ PrityPrint.prototype.visitDefVarMul = function (ctx) {
 
 PrityPrint.prototype.visitIntT = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.INT().getSymbol().text;
+    textArea.innerHTML += + textArea.innerHTML + " " + ctx.constructor.name + " " + ctx.INT().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -177,7 +180,7 @@ PrityPrint.prototype.visitIntT = function (ctx) {
 
 PrityPrint.prototype.visitCharT = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.CHAR().getSymbol().text;
+    textArea.innerHTML += + textArea.innerHTML + " " + ctx.constructor.name + " " + ctx.CHAR().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -185,7 +188,7 @@ PrityPrint.prototype.visitCharT = function (ctx) {
 
 PrityPrint.prototype.visitFloatT = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.FLOAT().getSymbol().text;
+    textArea.innerHTML += + textArea.innerHTML + " " + ctx.constructor.name + " " + ctx.FLOAT().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -193,7 +196,7 @@ PrityPrint.prototype.visitFloatT = function (ctx) {
 
 PrityPrint.prototype.visitBoolT = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.BOOL().getSymbol().text;
+    textArea.innerHTML += + textArea.innerHTML + " " + ctx.constructor.name + " " + ctx.BOOL().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -201,7 +204,7 @@ PrityPrint.prototype.visitBoolT = function (ctx) {
 
 PrityPrint.prototype.visitStringT = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.STRING().getSymbol().text;
+    textArea.innerHTML += + textArea.innerHTML + " " + ctx.constructor.name + " " + ctx.STRING().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -209,7 +212,7 @@ PrityPrint.prototype.visitStringT = function (ctx) {
 
 PrityPrint.prototype.visitIdT = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.IDENTIFIER().getSymbol().text;
+    textArea.innerHTML += + textArea.innerHTML + " " + ctx.constructor.name + " " + ctx.IDENTIFIER().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -217,88 +220,89 @@ PrityPrint.prototype.visitIdT = function (ctx) {
 
 PrityPrint.prototype.visitDesigClassdef = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.designator());
-    PrityPrint.visit(ctx.asignation());
+    this.visit(ctx.designator());
+    this.visit(ctx.asignation());
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitIfelseDef = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.condition());
-    PrityPrint.visit(ctx.statement());
+    this.visit(ctx.condition());
+    this.visit(ctx.statement());
     try{
-        PrityPrint.visit(ctx.statement());
+        this.visit(ctx.statement());
     }
     catch(err){
 
     }
-    PrityPrint.visit(ctx.statement());
+    this.visit(ctx.statement());
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitForDef = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.expr());
+    this.visit(ctx.expr());
     try{
-        PrityPrint.visit(ctx.condition());
+        this.visit(ctx.condition());
     }
     catch(err){
 
     }
     try{
-        PrityPrint.visit(ctx.statement());
+        this.visit(ctx.statement());
     }
     catch(err){
 
     }
-    PrityPrint.visit(ctx.statement());
+    this.visit(ctx.statement());
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitWhileDef = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.condition());
-    PrityPrint.visit(ctx.statement());
+    this.visit(ctx.condition());
+    this.visit(ctx.statement());
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitForeachDef = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.constructor.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.statement());
+    this.visit(ctx.statement());
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitBreak = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.BRAKE().symbol.text;
-    textArea.innerHTML = + textArea.innerHTML + ctx.constructor.name + ctx.PUNTOCOMA.symbol.text;
+    textArea.innerHTML += + textArea.innerHTML + " " + ctx.constructor.name + " " + ctx.BRAKE().getSymbol().text;
+    textArea.innerHTML += + textArea.innerHTML + " " + ctx.constructor.name + " " + ctx.PUNTOCOMA().getSymbol().text;
     cont++;
-    PrityPrint.visit(ctx.statement());
+    this.visit(ctx.statement());
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitReturnDef = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    for (i=0;i<ctx.statement().length;i++) {
-        PrityPrint.visit(ctx.expr(i));
+    this.visit(ctx.statement(0));
+    for (i=1;i<ctx.statement().length-1;i++) {
+        this.visit(ctx.expr(i));
     }
     cont--;
     return null;
@@ -306,39 +310,40 @@ PrityPrint.prototype.visitReturnDef = function (ctx) {
 
 PrityPrint.prototype.visitReadDef = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.designator());
+    this.visit(ctx.designator());
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitWriteDef = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.expr());
-    for (i=0;i<ctx.statement().length;i++) {
-        textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.COMA.symbol.text;
-        textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.NUMBER.symbol.text;
+    this.visit(ctx.expr());
+    this.visit(ctx.statement(0));
+    for (i=0;1<ctx.statement().length-1;i++) {
+        textArea.innerHTML += + textArea.innerHTML + " " + ctx.constructor.name + " " + ctx.COMA().getSymbol().text;
+        textArea.innerHTML += + textArea.innerHTML + " " + ctx.constructor.name + " " + ctx.NUMBER.getSymbol().text;
     }
-    textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.PUNTOCOMA.symbol.text;
+    textArea.innerHTML += + textArea.innerHTML + " " + ctx.constructor.name + " " + ctx.PUNTOCOMA().getSymbol().text;
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitBlockDef = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.block());
+    this.visit(ctx.block());
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitPuntoComa = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.PUNTOCOMA.symbol.text;
+    textArea.innerHTML += + textArea.innerHTML + " " + ctx.constructor.name + " " + ctx.PUNTOCOMA().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -346,48 +351,52 @@ PrityPrint.prototype.visitPuntoComa = function (ctx) {
 
 PrityPrint.prototype.visitAsignacion = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    for (i=0;i<ctx().length;i++) {
-        PrityPrint.visit(ctx.actPars(i));
-    }
+    this.visit(ctx.expr());
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitLista = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.expr());
+    try{
+        this.visit(ctx.actPars());
+    }
+    catch (error){
+
+    }
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitMenosmenos = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name + " " + ctx.AUMENTO().getSymbol().text;
     cont++;
-    textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.AUMENTO.symbol.text;
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitMasmas = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name+ " "+ctx.DISMINUCION().getSymbol().text;
     cont++;
-    textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.DISMINUCION.symbol.text;
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitBloque = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    for (i=0;i<ctx.block().length;i++) {
-        PrityPrint.visit(ctx.statement(i));
+    try {
+        this.visit(ctx.statement(i));
+    }
+    catch (error){
+
     }
     cont--;
     return null;
@@ -395,25 +404,25 @@ PrityPrint.prototype.visitBloque = function (ctx) {
 
 PrityPrint.prototype.visitParteLista = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.expr());
-    for (i=0;i<ctx.actPars().length;i++) {
-        textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.COMA.symbol.text;
-        PrityPrint.visit(ctx.expr(i));
+    this.visit(ctx.expr(0));
+    try{
+        this.visit(ctx.expr(1));
     }
+    catch (error){}
+
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitCondicion = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.condTerm());
+    this.visit(ctx.condTerm());
     for (i=0;i<ctx.condition().length;i++) {
-        textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.OR.symbol.text;
-        PrityPrint.visit(ctx.condTerm(i));
+        this.visit(ctx.condTerm(i));
     }
     cont--;
     return null;
@@ -421,12 +430,11 @@ PrityPrint.prototype.visitCondicion = function (ctx) {
 
 PrityPrint.prototype.visitCTerm = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.condFact());
+    this.visit(ctx.condFact());
     for (i=0;i<ctx.condTerm().length;i++) {
-        textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.AND.symbol.text;
-        PrityPrint.visit(ctx.condFact(i));
+        this.visit(ctx.condFact(i));
     }
     cont--;
     return null;
@@ -434,24 +442,23 @@ PrityPrint.prototype.visitCTerm = function (ctx) {
 
 PrityPrint.prototype.visitCFact = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.expr());
-    PrityPrint.visit(ctx.relop());
-    PrityPrint.visit(ctx.expr());
+    this.visit(ctx.expr());
+    this.visit(ctx.relop());
+    this.visit(ctx.expr());
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitExpresion = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.RESTA.symbol.text;
-    PrityPrint.visit(ctx.term());
+    this.visit(ctx.term());
     for (i=0;i<ctx.expr().length;i++) {
-        PrityPrint.visit(ctx.addop(i));
-        PrityPrint.visit(ctx.term(i));
+        this.visit(ctx.addop(i));
+        this.visit(ctx.term(i));
     }
     cont--;
     return null;
@@ -459,12 +466,12 @@ PrityPrint.prototype.visitExpresion = function (ctx) {
 
 PrityPrint.prototype.visitTermino = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.factor());
+    this.visit(ctx.factor());
     for (i=0;i<ctx.term().length;i++) {
-        PrityPrint.visit(ctx.mulop(i));
-        PrityPrint.visit(ctx.factor(i));
+        this.visit(ctx.mulop(i));
+        this.visit(ctx.factor(i));
     }
     cont--;
     return null;
@@ -472,11 +479,11 @@ PrityPrint.prototype.visitTermino = function (ctx) {
 
 PrityPrint.prototype.visitAsignador = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.designator());
+    this.visit(ctx.designator());
     try{
-        PrityPrint.visit(ctx.actPars());
+        this.visit(ctx.actPars());
     }
     catch(err){
 
@@ -487,34 +494,33 @@ PrityPrint.prototype.visitAsignador = function (ctx) {
 
 PrityPrint.prototype.visitFactorNumero = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name + " " + ctx.NUMBER().getSymbol().text;
     cont++;
-    textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.NUMBER.symbol.text;
+
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitFactorCaracter = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    textArea.innerHTML = + textArea.innerHTML + ctx.name + ctx.CHAR.symbol.text;
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitAsignador = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.booleano());
+    this.visit(ctx.booleano());
     cont--;
     return null;
 };
 
 PrityPrint.prototype.visitFactorNumero = function (ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name+ ctx.NUMBER.symbol.text;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name+ " " + ctx.NUMBER().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -522,7 +528,7 @@ PrityPrint.prototype.visitFactorNumero = function (ctx) {
 
 PrityPrint.prototype.visitFactorCaracter = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name+ ctx.CHAR.symbol.text;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name+ " " + ctx.CHAR().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -532,9 +538,9 @@ PrityPrint.prototype.visitFactorCaracter = function(ctx) {
 // Visit a parse tree produced by CParser#factorBool.
 PrityPrint.prototype.visitFactorBool = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.booleano());
+    this.visit(ctx.booleano());
     cont--;
     return null;
 };
@@ -543,8 +549,7 @@ PrityPrint.prototype.visitFactorBool = function(ctx) {
 // Visit a parse tree produced by CParser#factorNuevo.
 PrityPrint.prototype.visitFactorNuevo = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name+ ctx.NEW.symbol.text;
-    textArea.innerHTML = textArea.innerHTML + ctx.name+ ctx.IDENTIFIER.symbol.text;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name+ " " + ctx.IDENTIFIER().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -554,9 +559,9 @@ PrityPrint.prototype.visitFactorNuevo = function(ctx) {
 // Visit a parse tree produced by CParser#factorExpresion.
 PrityPrint.prototype.visitFactorExpresion = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.expr());
+    this.visit(ctx.expr());
     cont--;
     return null;
 };
@@ -565,7 +570,7 @@ PrityPrint.prototype.visitFactorExpresion = function(ctx) {
 // Visit a parse tree produced by CParser#verdad.
 PrityPrint.prototype.visitVerdad = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name+ ctx.TRUE.symbol.text;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name+ " " + ctx.TRUE().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -575,7 +580,7 @@ PrityPrint.prototype.visitVerdad = function(ctx) {
 // Visit a parse tree produced by CParser#falso.
 PrityPrint.prototype.visitFalso = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name+ ctx.FALSE.symbol.text;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name+ " " + ctx.FALSE().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -585,12 +590,12 @@ PrityPrint.prototype.visitFalso = function(ctx) {
 // Visit a parse tree produced by CParser#designador.
 PrityPrint.prototype.visitDesignador = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.factor());
+    this.visit(ctx.factor());
     for (i=0;i<ctx().asigClass().length;i++) {
-        PrityPrint.visit(ctx.asigClass(i));
-        PrityPrint.visit(ctx.asigClass(i));
+        this.visit(ctx.asigClass(i));
+        this.visit(ctx.asigClass(i));
     }
     cont--;
     return null;
@@ -600,7 +605,7 @@ PrityPrint.prototype.visitDesignador = function(ctx) {
 // Visit a parse tree produced by CParser#asignarClase.
 PrityPrint.prototype.visitAsignarClase = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name+ ctx.IDENTIFIER.symbol.text;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name+ " " + ctx.IDENTIFIER().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -610,9 +615,9 @@ PrityPrint.prototype.visitAsignarClase = function(ctx) {
 // Visit a parse tree produced by CParser#asignarLista.
 PrityPrint.prototype.visitAsignarLista = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name;
     cont++;
-    PrityPrint.visit(ctx.expr());
+    this.visit(ctx.expr());
     cont--;
     return null;
 };
@@ -621,7 +626,7 @@ PrityPrint.prototype.visitAsignarLista = function(ctx) {
 // Visit a parse tree produced by CParser#igualIgual.
 PrityPrint.prototype.visitIgualIgual = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name+ ctx.COMPARACION.symbol.text;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name+ " " + ctx.COMPARACION().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -631,7 +636,7 @@ PrityPrint.prototype.visitIgualIgual = function(ctx) {
 // Visit a parse tree produced by CParser#difereteDe.
 PrityPrint.prototype.visitDifereteDe = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name+ ctx.DIFERENTE.symbol.text;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name+ " " + ctx.DIFERENTE().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -641,7 +646,7 @@ PrityPrint.prototype.visitDifereteDe = function(ctx) {
 // Visit a parse tree produced by CParser#mayorQue.
 PrityPrint.prototype.visitMayorQue = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name+ ctx.MAYOR.symbol.text;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name+ " " + ctx.MAYOR().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -651,7 +656,7 @@ PrityPrint.prototype.visitMayorQue = function(ctx) {
 // Visit a parse tree produced by CParser#mayorIgualQue.
 PrityPrint.prototype.visitMayorIgualQue = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name+ ctx.MAYORIGUAL.symbol.text;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name+ " " + ctx.MAYORIGUAL().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -661,7 +666,7 @@ PrityPrint.prototype.visitMayorIgualQue = function(ctx) {
 // Visit a parse tree produced by CParser#menorQue.
 PrityPrint.prototype.visitMenorQue = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name+ ctx.MENOR.symbol.text;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name+ " " + ctx.MENOR().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -671,7 +676,7 @@ PrityPrint.prototype.visitMenorQue = function(ctx) {
 // Visit a parse tree produced by CParser#menorIgualQue.
 PrityPrint.prototype.visitMenorIgualQue = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name+ ctx.MENORIGUAL.symbol.text;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name+ " " + ctx.MENORIGUAL().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -681,7 +686,7 @@ PrityPrint.prototype.visitMenorIgualQue = function(ctx) {
 // Visit a parse tree produced by CParser#sumar.
 PrityPrint.prototype.visitSumar = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name+ ctx.SUMA.symbol.text;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name+ " " + ctx.SUMA().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -691,7 +696,7 @@ PrityPrint.prototype.visitSumar = function(ctx) {
 // Visit a parse tree produced by CParser#restar.
 PrityPrint.prototype.visitRestar = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name+ ctx.RESTA.symbol.text;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name+ " " + ctx.RESTA().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -701,7 +706,7 @@ PrityPrint.prototype.visitRestar = function(ctx) {
 // Visit a parse tree produced by CParser#multiplicar.
 PrityPrint.prototype.visitMultiplicar = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name+ ctx.MUL.symbol.text;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name+ " " + ctx.MUL().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -711,7 +716,7 @@ PrityPrint.prototype.visitMultiplicar = function(ctx) {
 // Visit a parse tree produced by CParser#dividir.
 PrityPrint.prototype.visitDividir = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name+ ctx.DIV.symbol.text;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name+ " " + ctx.DIV().getSymbol().text;
     cont++;
     cont--;
     return null;
@@ -721,7 +726,7 @@ PrityPrint.prototype.visitDividir = function(ctx) {
 // Visit a parse tree produced by CParser#modular.
 PrityPrint.prototype.visitModular = function(ctx) {
     printtab(cont);
-    textArea.innerHTML = textArea.innerHTML + ctx.name+ ctx.MODULO.symbol.text;
+    textArea.innerHTML += textArea.innerHTML + " " + ctx.constructor.name+ " " + ctx.MODULO().getSymbol().text;
     cont++;
     cont--;
     return null;
