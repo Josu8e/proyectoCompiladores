@@ -17,7 +17,7 @@ function analisisSintactico() {
     var parser = new CParser.CParser(tokens);
     parser.buildParseTrees = true;
     var tree = parser.program();
-    //console.log(tree);
+    console.log(tree);
     var visitorA = new VisitorA.PrityPrint();
     visitorA.visit(tree);
 
