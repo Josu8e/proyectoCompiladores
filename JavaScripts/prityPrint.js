@@ -73,7 +73,7 @@ PrityPrint.prototype.visitDeclaracionClase = function (ctx) {
 PrityPrint.prototype.visitConstante = function (ctx) {
 
     printtab(cont);
-    textArea.innerHTML+= ctx.constructor.name + " --> "+ ctx.prototype.IDENTIFIER().getSymbol().text + '\n';
+    textArea.innerHTML+= ctx.constructor.name + " --> "+ ctx.IDENTIFIER().getSymbol().text + '\n';
     cont++;
     this.visit(ctx.type());
     this.visit(ctx.numStr());
@@ -118,7 +118,7 @@ PrityPrint.prototype.visitClase = function (ctx){
 
 PrityPrint.prototype.visitMetodo = function (ctx){
     printtab(cont);
-    textArea.innerHTML+= ctx.constructor.name+ " token --> "+ctx.IDENTIFIER.getSymbol().text + '\n';
+    textArea.innerHTML+= ctx.constructor.name+ " token --> "+ctx.IDENTIFIER().getSymbol().text + '\n';
     cont++;
     this.visit(ctx.tipoMet());
 
@@ -126,7 +126,7 @@ PrityPrint.prototype.visitMetodo = function (ctx){
         this.visit(ctx.formPars());
     }
     catch(err){}
-    for (i=0;i<=ctx().varDecl().length-1;i++) {
+    for (i=0;i<=ctx.varDecl().length-1;i++) {
         this.visit(ctx.varDecl(i));
     }
 

@@ -62,7 +62,7 @@ block		            : CORCHETEIZQ  (statement)? CORCHETEDER                      
 actPars	                : expr (COMA expr)?                                                             #parteLista
                         ;
 
-	            : condTerm (OR condTerm)?                                                       #condicion
+condition	            : condTerm (OR condTerm)?                                                       #condicion
                         ;
 condTerm	            : condFact (AND condFact)?                                                      #cTerm
                         ;

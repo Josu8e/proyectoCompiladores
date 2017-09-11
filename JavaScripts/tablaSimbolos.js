@@ -5,18 +5,18 @@ function tablaSimbolos() {
     return this
 }
 
-function Id(nombre,tipo,valor,cantidadParametros,nivel,control) {
+function Id(nombre,tipo,cantidadParametros,nivel,control) {
     this.nombre = nombre;
     this.tipo = tipo;
-    this.valor = valor;
+    this.valor = null;
     this.cantidadParametros = cantidadParametros;
     this.nivel = nivel;
     this.control = control;
 }
 
-tablaSimbolos.prototype.insertar = function (nombre,tipo,valor,cantidadParametros,nivel,control) {
+tablaSimbolos.prototype.insertar = function (nombre,tipo,cantidadParametros,nivel,control) {
 
-    var id = new Id(nombre,tipo,valor,cantidadParametros,nivel,control);
+    var id = new Id(nombre,tipo,cantidadParametros,nivel,control);
     tabla.push(id);
 
 };
@@ -32,16 +32,20 @@ tablaSimbolos.prototype.buscar = function (nombre) {
 
 tablaSimbolos.prototype.imprimir=function () {
     tabla.forEach(function (x) {
-        if (x.nombre === nombre)
             console.log(x);
-
     });
 
 };
 
+
+tablaSimbolos.prototype.agregarValor= function (nombre,valor) {
+    var temp=this.buscar(nombre);
+    temp.valor = valor;
+};
+
 tablaSimbolos.prototype.eliminarNivel = function (nivel) {
     for (var i = 0; i<tabla.length;i++){
-        if (tabla[i].nivel === nivel)
+        if ((tabla[i].nivel === nivel) && (tabla[i].tipo === 'variable'))
             delete tabla[i];
     }
 };

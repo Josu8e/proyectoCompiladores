@@ -1,8 +1,13 @@
 var gramarVisitor = require('generated/CParserVisitor').CParserVisitor;
+var tablaSimbolos = require('JavaScripts/tablaSimbolos');
+var tabla = null;
 
+var textArea = document.getElementById('consola');
+var nivel = 0;
 
 function Acontextual() {
     gramarVisitor.call(this);
+    tabla = new tablaSimbolos.tablaSimbolos();
     return this;
 }
 
@@ -10,379 +15,428 @@ Acontextual.prototype = Object.create(gramarVisitor.prototype);
 Acontextual.prototype.constructor = Acontextual;
 
 
-CParserVisitor.prototype.visitProgramDef = function(ctx) {
+Acontextual.prototype.visitProgramDef = function(ctx) {
+    this.visitChildren(ctx);
+    tabla.imprimir();
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#declaracionConst.
-CParserVisitor.prototype.visitDeclaracionConst = function(ctx) {
+Acontextual.prototype.visitDeclaracionConst = function(ctx) {
+    this.visitChildren(ctx);
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#declaracionVariable.
-CParserVisitor.prototype.visitDeclaracionVariable = function(ctx) {
+Acontextual.prototype.visitDeclaracionVariable = function(ctx) {
+    this.visitChildren(ctx);
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#declaracionClase.
-CParserVisitor.prototype.visitDeclaracionClase = function(ctx) {
+Acontextual.prototype.visitDeclaracionClase = function(ctx) {
+    this.visitChildren(ctx);
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#constante.
-CParserVisitor.prototype.visitConstante = function(ctx) {
+Acontextual.prototype.visitConstante = function(ctx) {
+    var tipo = this.visit(ctx.type());
+    var nombre = ctx.IDENTIFIER().getSymbol().text;
+    tabla.insertar(nombre,tipo,0,nivel,'variable');
+    var valor = this.visit(ctx.numStr());
+    tabla.agregarValor(nombre,valor);
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#numero.
-CParserVisitor.prototype.visitNumero = function(ctx) {
-    return null;
+Acontextual.prototype.visitNumero = function(ctx) {
+    var valor = ctx.NUMBER().getSymbol().text;
+    return valor;
 };
 
 
 // Visit a parse tree produced by CParser#char.
-CParserVisitor.prototype.visitChar = function(ctx) {
-    return null;
+Acontextual.prototype.visitChar = function(ctx) {
+    var valor = ctx.CHAR().getSymbol().text;
+    return valor;
 };
 
 
 // Visit a parse tree produced by CParser#variable.
-CParserVisitor.prototype.visitVariable = function(ctx) {
+Acontextual.prototype.visitVariable = function(ctx) {
+    var tipo = this.visit(ctx.type());
+    var nombre = ctx.IDENTIFIER(0).getSymbol().text;
+    tabla.insertar(nombre,tipo,0,nivel,'variable');
+    for (i=0;i<=ctx.IDENTIFIER().length-1;i++) {
+        nombre=ctx.IDENTIFIER(i).getSymbol().text;
+        tabla.insertar(nombre,tipo,0,nivel,'variable');
+    }
+
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#clase.
-CParserVisitor.prototype.visitClase = function(ctx) {
+Acontextual.prototype.visitClase = function(ctx) {
+    this.visitChildren(ctx);
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#metodo.
-CParserVisitor.prototype.visitMetodo = function(ctx) {
+Acontextual.prototype.visitMetodo = function(ctx) {
+    nivel++;
+    var tipo = this.visit(ctx.tipoMet());
+    var nombre = ctx.IDENTIFIER().getSymbol().text;
+    var parametros;
+    try{
+        parametros = this.visit(ctx.formPars());
+    }
+    catch (err){
+        parametros = 0;
+    }
+
+    tabla.insertar(nombre,tipo,parametros,0,'funcion');
+
+    for (i=0;i<=ctx.varDecl().length-1;i++) {
+        this.visit(ctx.varDecl(i));
+    }
+    this.visit(ctx.block());
+    tabla.eliminarNivel(nivel);
+    nivel--;
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#tipoDecla.
-CParserVisitor.prototype.visitTipoDecla = function(ctx) {
-    return null;
+Acontextual.prototype.visitTipoDecla = function(ctx) {
+    var tipo=this.visitChildren(ctx.type());
+    return tipo;
 };
 
 
 // Visit a parse tree produced by CParser#void.
-CParserVisitor.prototype.visitVoid = function(ctx) {
-    return null;
+Acontextual.prototype.visitVoid = function(ctx) {
+    return 'void';
 };
 
 
 // Visit a parse tree produced by CParser#defVarMul.
-CParserVisitor.prototype.visitDefVarMul = function(ctx) {
-    return null;
+Acontextual.prototype.visitDefVarMul = function(ctx) {
+    var tipo = this.visit(ctx.type(0));
+    var nombre = ctx.IDENTIFIER(0).getSymbol().text;
+    tabla.insertar(nombre,tipo,0,nivel,'variable');
+    for (i=0;i<=ctx.type().length-1;i++) {
+        tipo=this.visit(ctx.type(i));
+        nombre=ctx.IDENTIFIER(0).getSymbol().text;
+        tabla.insertar(nombre,tipo,0,nivel,'variable');
+    }
+    return ctx.type.length+1;
 };
 
 
 // Visit a parse tree produced by CParser#intT.
-CParserVisitor.prototype.visitIntT = function(ctx) {
-    return null;
+Acontextual.prototype.visitIntT = function(ctx) {
+    return 'int';
 };
 
 
 // Visit a parse tree produced by CParser#charT.
-CParserVisitor.prototype.visitCharT = function(ctx) {
-    return null;
+Acontextual.prototype.visitCharT = function(ctx) {
+    return 'char';
 };
 
 
 // Visit a parse tree produced by CParser#floatT.
-CParserVisitor.prototype.visitFloatT = function(ctx) {
-    return null;
+Acontextual.prototype.visitFloatT = function(ctx) {
+    return 'float';
 };
 
 
 // Visit a parse tree produced by CParser#boolT.
-CParserVisitor.prototype.visitBoolT = function(ctx) {
-    return null;
+Acontextual.prototype.visitBoolT = function(ctx) {
+    return 'bool';
 };
 
 
 // Visit a parse tree produced by CParser#stringT.
-CParserVisitor.prototype.visitStringT = function(ctx) {
-    return null;
+Acontextual.prototype.visitStringT = function(ctx) {
+    return 'string';
 };
 
 
 // Visit a parse tree produced by CParser#idT.
-CParserVisitor.prototype.visitIdT = function(ctx) {
-    return null;
+Acontextual.prototype.visitIdT = function(ctx) {
+    return ctx.IDENTIFIER().getSymbol().text;
 };
 
 
 // Visit a parse tree produced by CParser#desigClassdef.
-CParserVisitor.prototype.visitDesigClassdef = function(ctx) {
+Acontextual.prototype.visitDesigClassdef = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#ifelseDef.
-CParserVisitor.prototype.visitIfelseDef = function(ctx) {
+Acontextual.prototype.visitIfelseDef = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#forDef.
-CParserVisitor.prototype.visitForDef = function(ctx) {
+Acontextual.prototype.visitForDef = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#whileDef.
-CParserVisitor.prototype.visitWhileDef = function(ctx) {
+Acontextual.prototype.visitWhileDef = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#foreachDef.
-CParserVisitor.prototype.visitForeachDef = function(ctx) {
+Acontextual.prototype.visitForeachDef = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#break.
-CParserVisitor.prototype.visitBreak = function(ctx) {
+Acontextual.prototype.visitBreak = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#returnDef.
-CParserVisitor.prototype.visitReturnDef = function(ctx) {
+Acontextual.prototype.visitReturnDef = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#readDef.
-CParserVisitor.prototype.visitReadDef = function(ctx) {
+Acontextual.prototype.visitReadDef = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#writeDef.
-CParserVisitor.prototype.visitWriteDef = function(ctx) {
+Acontextual.prototype.visitWriteDef = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#blockDef.
-CParserVisitor.prototype.visitBlockDef = function(ctx) {
+Acontextual.prototype.visitBlockDef = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#puntoComa.
-CParserVisitor.prototype.visitPuntoComa = function(ctx) {
+Acontextual.prototype.visitPuntoComa = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#asignacion.
-CParserVisitor.prototype.visitAsignacion = function(ctx) {
+Acontextual.prototype.visitAsignacion = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#lista.
-CParserVisitor.prototype.visitLista = function(ctx) {
+Acontextual.prototype.visitLista = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#menosmenos.
-CParserVisitor.prototype.visitMenosmenos = function(ctx) {
+Acontextual.prototype.visitMenosmenos = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#masmas.
-CParserVisitor.prototype.visitMasmas = function(ctx) {
+Acontextual.prototype.visitMasmas = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#bloque.
-CParserVisitor.prototype.visitBloque = function(ctx) {
+Acontextual.prototype.visitBloque = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#parteLista.
-CParserVisitor.prototype.visitParteLista = function(ctx) {
+Acontextual.prototype.visitParteLista = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#condicion.
-CParserVisitor.prototype.visitCondicion = function(ctx) {
+Acontextual.prototype.visitCondicion = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#cTerm.
-CParserVisitor.prototype.visitCTerm = function(ctx) {
+Acontextual.prototype.visitCTerm = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#cFact.
-CParserVisitor.prototype.visitCFact = function(ctx) {
+Acontextual.prototype.visitCFact = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#expresion.
-CParserVisitor.prototype.visitExpresion = function(ctx) {
+Acontextual.prototype.visitExpresion = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#termino.
-CParserVisitor.prototype.visitTermino = function(ctx) {
+Acontextual.prototype.visitTermino = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#asignador.
-CParserVisitor.prototype.visitAsignador = function(ctx) {
+Acontextual.prototype.visitAsignador = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#factorNumero.
-CParserVisitor.prototype.visitFactorNumero = function(ctx) {
+Acontextual.prototype.visitFactorNumero = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#factorCaracter.
-CParserVisitor.prototype.visitFactorCaracter = function(ctx) {
+Acontextual.prototype.visitFactorCaracter = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#factorBool.
-CParserVisitor.prototype.visitFactorBool = function(ctx) {
+Acontextual.prototype.visitFactorBool = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#factorNuevo.
-CParserVisitor.prototype.visitFactorNuevo = function(ctx) {
+Acontextual.prototype.visitFactorNuevo = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#factorExpresion.
-CParserVisitor.prototype.visitFactorExpresion = function(ctx) {
+Acontextual.prototype.visitFactorExpresion = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#verdad.
-CParserVisitor.prototype.visitVerdad = function(ctx) {
+Acontextual.prototype.visitVerdad = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#falso.
-CParserVisitor.prototype.visitFalso = function(ctx) {
+Acontextual.prototype.visitFalso = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#designador.
-CParserVisitor.prototype.visitDesignador = function(ctx) {
+Acontextual.prototype.visitDesignador = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#asignarClase.
-CParserVisitor.prototype.visitAsignarClase = function(ctx) {
+Acontextual.prototype.visitAsignarClase = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#asignarLista.
-CParserVisitor.prototype.visitAsignarLista = function(ctx) {
+Acontextual.prototype.visitAsignarLista = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#igualIgual.
-CParserVisitor.prototype.visitIgualIgual = function(ctx) {
+Acontextual.prototype.visitIgualIgual = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#difereteDe.
-CParserVisitor.prototype.visitDifereteDe = function(ctx) {
+Acontextual.prototype.visitDifereteDe = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#mayorQue.
-CParserVisitor.prototype.visitMayorQue = function(ctx) {
+Acontextual.prototype.visitMayorQue = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#mayorIgualQue.
-CParserVisitor.prototype.visitMayorIgualQue = function(ctx) {
+Acontextual.prototype.visitMayorIgualQue = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#menorQue.
-CParserVisitor.prototype.visitMenorQue = function(ctx) {
+Acontextual.prototype.visitMenorQue = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#menorIgualQue.
-CParserVisitor.prototype.visitMenorIgualQue = function(ctx) {
+Acontextual.prototype.visitMenorIgualQue = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#sumar.
-CParserVisitor.prototype.visitSumar = function(ctx) {
+Acontextual.prototype.visitSumar = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#restar.
-CParserVisitor.prototype.visitRestar = function(ctx) {
+Acontextual.prototype.visitRestar = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#multiplicar.
-CParserVisitor.prototype.visitMultiplicar = function(ctx) {
+Acontextual.prototype.visitMultiplicar = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#dividir.
-CParserVisitor.prototype.visitDividir = function(ctx) {
+Acontextual.prototype.visitDividir = function(ctx) {
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#modular.
-CParserVisitor.prototype.visitModular = function(ctx) {
+Acontextual.prototype.visitModular = function(ctx) {
     return null;
 };
 
