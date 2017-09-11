@@ -1,10 +1,11 @@
 var antlr4 = require('antlr4/index');
 var CParser = require('generated/CParser');
 var CScanner = require('generated/CScanner');
-var VisitorA = require('JavaScripts/prityPrint');
+var contextual = require('JavaScripts/VisitorAContextual');
 
 
-function analisisSintactico() {
+
+function AContextual() {
 
     editor = $('textarea').data('ace-editor');
 
@@ -17,9 +18,10 @@ function analisisSintactico() {
     var parser = new CParser.CParser(tokens);
     parser.buildParseTrees = true;
     var tree = parser.program();
-    console.log(tree);
-    var visitorA = new VisitorA.PrityPrint();
-    visitorA.visit(tree);
+    var x = new contextual.Acontextual();
+    x.visit(tree);
+
+
 
 
 }
