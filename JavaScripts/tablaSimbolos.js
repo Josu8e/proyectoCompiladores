@@ -25,7 +25,7 @@ tablaSimbolos.prototype.buscar = function (nombre) {
     var temp = null;
     tabla.forEach(function (x) {
         if (x.nombre === nombre)
-            temp = element;
+            temp = x;
     });
     return temp;
 };
@@ -45,8 +45,8 @@ tablaSimbolos.prototype.agregarValor= function (nombre,valor) {
 
 tablaSimbolos.prototype.eliminarNivel = function (nivel) {
     for (var i = 0; i<tabla.length;i++){
-        if ((tabla[i].nivel === nivel) && (tabla[i].tipo === 'variable'))
-            delete tabla[i];
+        if ((tabla[i].nivel === nivel) && (tabla[i].control === 'variable'))
+            tabla.splice(i,1);
     }
 };
 

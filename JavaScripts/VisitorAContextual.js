@@ -47,9 +47,15 @@ Acontextual.prototype.visitDeclaracionClase = function(ctx) {
 Acontextual.prototype.visitConstante = function(ctx) {
     var tipo = this.visit(ctx.type());
     var nombre = ctx.IDENTIFIER().getSymbol().text;
-    tabla.insertar(nombre,tipo,0,nivel,'variable');
-    var valor = this.visit(ctx.numStr());
-    tabla.agregarValor(nombre,valor);
+    var temp = tabla.buscar(nombre);
+    if (temp === null) {
+        tabla.insertar(nombre, tipo, 0, nivel, 'variable');
+        var valor = this.visit(ctx.numStr());
+        tabla.agregarValor(nombre, valor);
+    }
+    else{
+        textArea.innerHTML = "Error en linea "+ ctx.IDENTIFIER().line +"  columna "+ ctx.IDENTIFIER().column + " variable "+ nombre+" ya definida";
+    }
     return null;
 };
 
@@ -72,10 +78,22 @@ Acontextual.prototype.visitChar = function(ctx) {
 Acontextual.prototype.visitVariable = function(ctx) {
     var tipo = this.visit(ctx.type());
     var nombre = ctx.IDENTIFIER(0).getSymbol().text;
-    tabla.insertar(nombre,tipo,0,nivel,'variable');
-    for (i=0;i<=ctx.IDENTIFIER().length-1;i++) {
+    var temp  = tabla.buscar(nombre);
+    if (temp === null) {
+        tabla.insertar(nombre, tipo, 0, nivel, 'variable');
+    }
+    else{
+        textArea.innerHTML = "Error en linea "+ ctx.IDENTIFIER().line +"  columna "+ ctx.IDENTIFIER().column + " variable "+ nombre+" ya definida";
+    }
+    for (i=1;i<=ctx.IDENTIFIER().length-1;i++) {
         nombre=ctx.IDENTIFIER(i).getSymbol().text;
-        tabla.insertar(nombre,tipo,0,nivel,'variable');
+        temp = tabla.buscar(nombre);
+        if (temp === null) {
+            tabla.insertar(nombre, tipo, 0, nivel, 'variable');
+        }
+        else{
+            textArea.innerHTML = "Error en linea "+ ctx.IDENTIFIER().line +"  columna "+ ctx.IDENTIFIER().column + " variable "+ nombre+" ya definida";
+        }
     }
 
     return null;
@@ -102,7 +120,21 @@ Acontextual.prototype.visitMetodo = function(ctx) {
         parametros = 0;
     }
 
-    tabla.insertar(nombre,tipo,parametros,0,'funcion');
+    var temp  = tabla.buscar(nombre);
+
+    if(temp === null){
+        tabla.insertar(nombre,tipo,parametros,0,'funcion');
+    }
+    else{
+        if(temp.cantidadParametros === parametros){
+            textArea.innerHTML = "Error en linea "+ ctx.IDENTIFIER().line +"  columna "+ ctx.IDENTIFIER().column + " funcion "+ nombre+" ya definida con la misma cantida de parametros";
+        }
+        else {
+            tabla.insertar(nombre,tipo,parametros,0,'funcion');
+        }
+    }
+
+
 
     for (i=0;i<=ctx.varDecl().length-1;i++) {
         this.visit(ctx.varDecl(i));
@@ -131,13 +163,27 @@ Acontextual.prototype.visitVoid = function(ctx) {
 Acontextual.prototype.visitDefVarMul = function(ctx) {
     var tipo = this.visit(ctx.type(0));
     var nombre = ctx.IDENTIFIER(0).getSymbol().text;
-    tabla.insertar(nombre,tipo,0,nivel,'variable');
-    for (i=0;i<=ctx.type().length-1;i++) {
+
+    var temp = tabla.buscar(nombre);
+    if(temp === null) {
+        tabla.insertar(nombre, tipo, 0, nivel, 'variable');
+    }
+    else{
+        textArea.innerHTML = "Error en linea "+ ctx.IDENTIFIER().line +"  columna "+ ctx.IDENTIFIER().column + " variable "+ nombre+" ya definida";
+    }
+
+    for (i=1;i<=ctx.type().length-1;i++) {
         tipo=this.visit(ctx.type(i));
         nombre=ctx.IDENTIFIER(0).getSymbol().text;
-        tabla.insertar(nombre,tipo,0,nivel,'variable');
+        temp = tabla.buscar(nombre);
+        if (temp === null) {
+            tabla.insertar(nombre, tipo, 0, nivel, 'variable');
+        }
+        else{
+            textArea.innerHTML = textArea.innerHTML = "Error en linea "+ ctx.IDENTIFIER().line +"  columna "+ ctx.IDENTIFIER().column + " variable "+ nombre+" ya definida";
+        }
     }
-    return ctx.type.length+1;
+    return ctx.type.length;
 };
 
 

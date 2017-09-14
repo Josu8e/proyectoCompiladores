@@ -56,4 +56,4 @@ window.onload = function() {
         descargarArchivo('archivo.txt');
 
     }, false);
-}
+};
