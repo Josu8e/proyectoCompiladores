@@ -38,14 +38,14 @@ type                    : INT                                                   
                         | IDENTIFIER                                                                    #idT
                         ;
 
-statement               : designator  asignation  PUNTOCOMA                                             #desigClassdef
+statement               : IDENTIFIER (asigClass)* asignation  PUNTOCOMA                                 #desigClassdef
 		                | IF PIZQ condition PDER statement (ELSE statement )?                           #ifelseDef
 		                | FOR PIZQ expr PUNTOCOMA (condition)? PUNTOCOMA (statement)? PDER statement    #forDef
 		                | WHILE PIZQ condition PDER statement                                           #whileDef
 		                | FOREACH PIZQ IDENTIFIER IDENTIFIER IN IDENTIFIER PDER statement               #foreachDef
 		                | BRAKE PUNTOCOMA                                                               #break
 		                | RETURN (expr)? PUNTOCOMA                                                      #returnDef
-		                | READ PIZQ designator PDER PUNTOCOMA                                           #readDef
+		                | READ PIZQ IDENTIFIER (asigClass)* PDER PUNTOCOMA                              #readDef
 		                | WRITE PIZQ expr (COMA NUMBER)? PDER PUNTOCOMA                                 #writeDef
 		                | block                                                                         #blockDef
 		                | PUNTOCOMA                                                                     #puntoComa
@@ -72,7 +72,7 @@ expr		            :  RESTA?  term  (addop term)*                                
                         ;
 term		            : factor (mulop factor)*                                                        #termino
                         ;
-factor		            : designator ( PIZQ  (actPars)?  PDER )?                                        #asignador
+factor		            : IDENTIFIER (asigClass)* ( PIZQ  (actPars)?  PDER )?                                        #asignador
 		                | NUMBER                                                                        #factorNumero
 		                | CHAR                                                                          #factorCaracter
 		                | booleano                                                                      #factorBool
@@ -84,8 +84,7 @@ booleano                : TRUE                                                  
                         | FALSE                                                                         #falso
                         ;
 
-designator	            : IDENTIFIER (asigClass)*                                                       #designador
-                        ;
+
 
 asigClass               : PUNTO IDENTIFIER                                                              #asignarClase
                         | PCIZQ expr PCDER                                                              #asignarLista
