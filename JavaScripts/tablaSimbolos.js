@@ -23,10 +23,11 @@ tablaSimbolos.prototype.insertar = function (nombre,tipo,cantidadParametros,nive
 
 tablaSimbolos.prototype.buscar = function (nombre) {
     var temp = null;
-    tabla.forEach(function (x) {
-        if (x.nombre === nombre)
-            temp = element;
-    });
+    for(var i=0;i<tabla.length;i++){
+        if (tabla[i].nombre== nombre){
+            return tabla[i];
+        }
+    }
     return temp;
 };
 
@@ -38,15 +39,10 @@ tablaSimbolos.prototype.imprimir=function () {
 };
 
 
-tablaSimbolos.prototype.agregarValor= function (nombre,valor) {
-    var temp=this.buscar(nombre);
-    temp.valor = valor;
-};
-
 tablaSimbolos.prototype.eliminarNivel = function (nivel) {
     for (var i = 0; i<tabla.length;i++){
-        if ((tabla[i].nivel === nivel) && (tabla[i].tipo === 'variable'))
-            delete tabla[i];
+        if ((tabla[i].nivel === nivel) && (tabla[i].control === 'variable'))
+            tabla.splice(i,1);
     }
 };
 

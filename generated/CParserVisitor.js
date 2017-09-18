@@ -306,12 +306,6 @@ CParserVisitor.prototype.visitFalso = function(ctx) {
 };
 
 
-// Visit a parse tree produced by CParser#designador.
-CParserVisitor.prototype.visitDesignador = function(ctx) {
-  return this.visitChildren(ctx);
-};
-
-
 // Visit a parse tree produced by CParser#asignarClase.
 CParserVisitor.prototype.visitAsignarClase = function(ctx) {
   return this.visitChildren(ctx);
