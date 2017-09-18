@@ -6,7 +6,7 @@ var CParserVisitor = require('./CParserVisitor').CParserVisitor;
 var grammarFileName = "CParser.g4";
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
-    "\u00039\u0151\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t",
+    "\u00039\u0152\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t",
     "\u0004\u0004\u0005\t\u0005\u0004\u0006\t\u0006\u0004\u0007\t\u0007\u0004",
     "\b\t\b\u0004\t\t\t\u0004\n\t\n\u0004\u000b\t\u000b\u0004\f\t\f\u0004",
     "\r\t\r\u0004\u000e\t\u000e\u0004\u000f\t\u000f\u0004\u0010\t\u0010\u0004",
@@ -49,26 +49,26 @@ var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     "\u0007\u0015\u011d\n\u0015\f\u0015\u000e\u0015\u0120\u000b\u0015\u0003",
     "\u0015\u0003\u0015\u0005\u0015\u0124\n\u0015\u0003\u0015\u0005\u0015",
     "\u0127\n\u0015\u0003\u0015\u0003\u0015\u0003\u0015\u0003\u0015\u0003",
-    "\u0015\u0003\u0015\u0003\u0015\u0003\u0015\u0003\u0015\u0005\u0015\u0132",
-    "\n\u0015\u0003\u0016\u0003\u0016\u0005\u0016\u0136\n\u0016\u0003\u0017",
-    "\u0003\u0017\u0003\u0017\u0003\u0017\u0003\u0017\u0003\u0017\u0005\u0017",
-    "\u013e\n\u0017\u0003\u0018\u0003\u0018\u0003\u0018\u0003\u0018\u0003",
-    "\u0018\u0003\u0018\u0005\u0018\u0146\n\u0018\u0003\u0019\u0003\u0019",
-    "\u0005\u0019\u014a\n\u0019\u0003\u001a\u0003\u001a\u0003\u001a\u0005",
-    "\u001a\u014f\n\u001a\u0003\u001a\u0002\u0002\u001b\u0002\u0004\u0006",
-    "\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018\u001a\u001c\u001e \"$&(*",
-    ",.02\u0002\u0002\u0002\u0175\u00024\u0003\u0002\u0002\u0002\u0004I\u0003",
-    "\u0002\u0002\u0002\u0006K\u0003\u0002\u0002\u0002\bT\u0003\u0002\u0002",
-    "\u0002\nV\u0003\u0002\u0002\u0002\fa\u0003\u0002\u0002\u0002\u000el",
-    "\u0003\u0002\u0002\u0002\u0010}\u0003\u0002\u0002\u0002\u0012\u007f",
+    "\u0015\u0003\u0015\u0003\u0015\u0003\u0015\u0003\u0015\u0003\u0015\u0005",
+    "\u0015\u0133\n\u0015\u0003\u0016\u0003\u0016\u0005\u0016\u0137\n\u0016",
+    "\u0003\u0017\u0003\u0017\u0003\u0017\u0003\u0017\u0003\u0017\u0003\u0017",
+    "\u0005\u0017\u013f\n\u0017\u0003\u0018\u0003\u0018\u0003\u0018\u0003",
+    "\u0018\u0003\u0018\u0003\u0018\u0005\u0018\u0147\n\u0018\u0003\u0019",
+    "\u0003\u0019\u0005\u0019\u014b\n\u0019\u0003\u001a\u0003\u001a\u0003",
+    "\u001a\u0005\u001a\u0150\n\u001a\u0003\u001a\u0002\u0002\u001b\u0002",
+    "\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018\u001a\u001c\u001e",
+    " \"$&(*,.02\u0002\u0002\u0002\u0177\u00024\u0003\u0002\u0002\u0002\u0004",
+    "I\u0003\u0002\u0002\u0002\u0006K\u0003\u0002\u0002\u0002\bT\u0003\u0002",
+    "\u0002\u0002\nV\u0003\u0002\u0002\u0002\fa\u0003\u0002\u0002\u0002\u000e",
+    "l\u0003\u0002\u0002\u0002\u0010}\u0003\u0002\u0002\u0002\u0012\u007f",
     "\u0003\u0002\u0002\u0002\u0014\u0090\u0003\u0002\u0002\u0002\u0016\u00df",
     "\u0003\u0002\u0002\u0002\u0018\u00ea\u0003\u0002\u0002\u0002\u001a\u00ec",
     "\u0003\u0002\u0002\u0002\u001c\u00f2\u0003\u0002\u0002\u0002\u001e\u00f7",
     "\u0003\u0002\u0002\u0002 \u00fc\u0003\u0002\u0002\u0002\"\u0101\u0003",
     "\u0002\u0002\u0002$\u0106\u0003\u0002\u0002\u0002&\u0111\u0003\u0002",
-    "\u0002\u0002(\u0131\u0003\u0002\u0002\u0002*\u0135\u0003\u0002\u0002",
-    "\u0002,\u013d\u0003\u0002\u0002\u0002.\u0145\u0003\u0002\u0002\u0002",
-    "0\u0149\u0003\u0002\u0002\u00022\u014e\u0003\u0002\u0002\u000245\u0007",
+    "\u0002\u0002(\u0132\u0003\u0002\u0002\u0002*\u0136\u0003\u0002\u0002",
+    "\u0002,\u013e\u0003\u0002\u0002\u0002.\u0146\u0003\u0002\u0002\u0002",
+    "0\u014a\u0003\u0002\u0002\u00022\u014f\u0003\u0002\u0002\u000245\u0007",
     "\n\u0002\u000259\u00073\u0002\u000268\u0005\u0004\u0003\u000276\u0003",
     "\u0002\u0002\u00028;\u0003\u0002\u0002\u000297\u0003\u0002\u0002\u0002",
     "9:\u0003\u0002\u0002\u0002:<\u0003\u0002\u0002\u0002;9\u0003\u0002\u0002",
@@ -201,36 +201,37 @@ var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     "\u0122\u0003\u0002\u0002\u0002\u0123\u0124\u0003\u0002\u0002\u0002\u0124",
     "\u0125\u0003\u0002\u0002\u0002\u0125\u0127\u0007\u001b\u0002\u0002\u0126",
     "\u0121\u0003\u0002\u0002\u0002\u0126\u0127\u0003\u0002\u0002\u0002\u0127",
-    "\u0132\u0003\u0002\u0002\u0002\u0128\u0132\u00074\u0002\u0002\u0129",
-    "\u0132\u00076\u0002\u0002\u012a\u0132\u0005*\u0016\u0002\u012b\u012c",
-    "\u0007\f\u0002\u0002\u012c\u0132\u00073\u0002\u0002\u012d\u012e\u0007",
+    "\u0133\u0003\u0002\u0002\u0002\u0128\u0133\u00074\u0002\u0002\u0129",
+    "\u0133\u00076\u0002\u0002\u012a\u0133\u0005*\u0016\u0002\u012b\u012c",
+    "\u0007\f\u0002\u0002\u012c\u0133\u00073\u0002\u0002\u012d\u012e\u0007",
     "\u001a\u0002\u0002\u012e\u012f\u0005$\u0013\u0002\u012f\u0130\u0007",
-    "\u001b\u0002\u0002\u0130\u0132\u0003\u0002\u0002\u0002\u0131\u011a\u0003",
-    "\u0002\u0002\u0002\u0131\u0128\u0003\u0002\u0002\u0002\u0131\u0129\u0003",
-    "\u0002\u0002\u0002\u0131\u012a\u0003\u0002\u0002\u0002\u0131\u012b\u0003",
-    "\u0002\u0002\u0002\u0131\u012d\u0003\u0002\u0002\u0002\u0132)\u0003",
-    "\u0002\u0002\u0002\u0133\u0136\u00071\u0002\u0002\u0134\u0136\u0007",
-    "2\u0002\u0002\u0135\u0133\u0003\u0002\u0002\u0002\u0135\u0134\u0003",
-    "\u0002\u0002\u0002\u0136+\u0003\u0002\u0002\u0002\u0137\u0138\u0007",
-    "0\u0002\u0002\u0138\u013e\u00073\u0002\u0002\u0139\u013a\u0007\u001e",
-    "\u0002\u0002\u013a\u013b\u0005$\u0013\u0002\u013b\u013c\u0007\u001f",
-    "\u0002\u0002\u013c\u013e\u0003\u0002\u0002\u0002\u013d\u0137\u0003\u0002",
-    "\u0002\u0002\u013d\u0139\u0003\u0002\u0002\u0002\u013e-\u0003\u0002",
-    "\u0002\u0002\u013f\u0146\u0007$\u0002\u0002\u0140\u0146\u0007%\u0002",
-    "\u0002\u0141\u0146\u0007!\u0002\u0002\u0142\u0146\u0007#\u0002\u0002",
-    "\u0143\u0146\u0007 \u0002\u0002\u0144\u0146\u0007\"\u0002\u0002\u0145",
-    "\u013f\u0003\u0002\u0002\u0002\u0145\u0140\u0003\u0002\u0002\u0002\u0145",
-    "\u0141\u0003\u0002\u0002\u0002\u0145\u0142\u0003\u0002\u0002\u0002\u0145",
-    "\u0143\u0003\u0002\u0002\u0002\u0145\u0144\u0003\u0002\u0002\u0002\u0146",
-    "/\u0003\u0002\u0002\u0002\u0147\u014a\u0007\u001c\u0002\u0002\u0148",
-    "\u014a\u0007\'\u0002\u0002\u0149\u0147\u0003\u0002\u0002\u0002\u0149",
-    "\u0148\u0003\u0002\u0002\u0002\u014a1\u0003\u0002\u0002\u0002\u014b",
-    "\u014f\u0007\u001d\u0002\u0002\u014c\u014f\u0007&\u0002\u0002\u014d",
-    "\u014f\u0007(\u0002\u0002\u014e\u014b\u0003\u0002\u0002\u0002\u014e",
-    "\u014c\u0003\u0002\u0002\u0002\u014e\u014d\u0003\u0002\u0002\u0002\u014f",
+    "\u001b\u0002\u0002\u0130\u0133\u0003\u0002\u0002\u0002\u0131\u0133\u0007",
+    "5\u0002\u0002\u0132\u011a\u0003\u0002\u0002\u0002\u0132\u0128\u0003",
+    "\u0002\u0002\u0002\u0132\u0129\u0003\u0002\u0002\u0002\u0132\u012a\u0003",
+    "\u0002\u0002\u0002\u0132\u012b\u0003\u0002\u0002\u0002\u0132\u012d\u0003",
+    "\u0002\u0002\u0002\u0132\u0131\u0003\u0002\u0002\u0002\u0133)\u0003",
+    "\u0002\u0002\u0002\u0134\u0137\u00071\u0002\u0002\u0135\u0137\u0007",
+    "2\u0002\u0002\u0136\u0134\u0003\u0002\u0002\u0002\u0136\u0135\u0003",
+    "\u0002\u0002\u0002\u0137+\u0003\u0002\u0002\u0002\u0138\u0139\u0007",
+    "0\u0002\u0002\u0139\u013f\u00073\u0002\u0002\u013a\u013b\u0007\u001e",
+    "\u0002\u0002\u013b\u013c\u0005$\u0013\u0002\u013c\u013d\u0007\u001f",
+    "\u0002\u0002\u013d\u013f\u0003\u0002\u0002\u0002\u013e\u0138\u0003\u0002",
+    "\u0002\u0002\u013e\u013a\u0003\u0002\u0002\u0002\u013f-\u0003\u0002",
+    "\u0002\u0002\u0140\u0147\u0007$\u0002\u0002\u0141\u0147\u0007%\u0002",
+    "\u0002\u0142\u0147\u0007!\u0002\u0002\u0143\u0147\u0007#\u0002\u0002",
+    "\u0144\u0147\u0007 \u0002\u0002\u0145\u0147\u0007\"\u0002\u0002\u0146",
+    "\u0140\u0003\u0002\u0002\u0002\u0146\u0141\u0003\u0002\u0002\u0002\u0146",
+    "\u0142\u0003\u0002\u0002\u0002\u0146\u0143\u0003\u0002\u0002\u0002\u0146",
+    "\u0144\u0003\u0002\u0002\u0002\u0146\u0145\u0003\u0002\u0002\u0002\u0147",
+    "/\u0003\u0002\u0002\u0002\u0148\u014b\u0007\u001c\u0002\u0002\u0149",
+    "\u014b\u0007\'\u0002\u0002\u014a\u0148\u0003\u0002\u0002\u0002\u014a",
+    "\u0149\u0003\u0002\u0002\u0002\u014b1\u0003\u0002\u0002\u0002\u014c",
+    "\u0150\u0007\u001d\u0002\u0002\u014d\u0150\u0007&\u0002\u0002\u014e",
+    "\u0150\u0007(\u0002\u0002\u014f\u014c\u0003\u0002\u0002\u0002\u014f",
+    "\u014d\u0003\u0002\u0002\u0002\u014f\u014e\u0003\u0002\u0002\u0002\u0150",
     "3\u0003\u0002\u0002\u0002\'9@IT\\gpv}\u0087\u0090\u0096\u00a3\u00aa",
     "\u00ae\u00c5\u00ce\u00d8\u00df\u00e5\u00ea\u00ee\u00f5\u00fa\u00ff\u0106",
-    "\u010e\u0117\u011e\u0123\u0126\u0131\u0135\u013d\u0145\u0149\u014e"].join("");
+    "\u010e\u0117\u011e\u0123\u0126\u0132\u0136\u013e\u0146\u014a\u014f"].join("");
 
 
 var atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -2216,7 +2217,7 @@ CParser.prototype.statement = function() {
             this.state = 168;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-            if(_la===CParser.NEW || _la===CParser.PIZQ || ((((_la - 37)) & ~0x1f) == 0 && ((1 << (_la - 37)) & ((1 << (CParser.RESTA - 37)) | (1 << (CParser.TRUE - 37)) | (1 << (CParser.FALSE - 37)) | (1 << (CParser.IDENTIFIER - 37)) | (1 << (CParser.NUMBER - 37)) | (1 << (CParser.CHAR - 37)))) !== 0)) {
+            if(_la===CParser.NEW || _la===CParser.PIZQ || ((((_la - 37)) & ~0x1f) == 0 && ((1 << (_la - 37)) & ((1 << (CParser.RESTA - 37)) | (1 << (CParser.TRUE - 37)) | (1 << (CParser.FALSE - 37)) | (1 << (CParser.IDENTIFIER - 37)) | (1 << (CParser.NUMBER - 37)) | (1 << (CParser.STRING - 37)) | (1 << (CParser.CHAR - 37)))) !== 0)) {
                 this.state = 167;
                 this.condition();
             }
@@ -2286,7 +2287,7 @@ CParser.prototype.statement = function() {
             this.state = 195;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-            if(_la===CParser.NEW || _la===CParser.PIZQ || ((((_la - 37)) & ~0x1f) == 0 && ((1 << (_la - 37)) & ((1 << (CParser.RESTA - 37)) | (1 << (CParser.TRUE - 37)) | (1 << (CParser.FALSE - 37)) | (1 << (CParser.IDENTIFIER - 37)) | (1 << (CParser.NUMBER - 37)) | (1 << (CParser.CHAR - 37)))) !== 0)) {
+            if(_la===CParser.NEW || _la===CParser.PIZQ || ((((_la - 37)) & ~0x1f) == 0 && ((1 << (_la - 37)) & ((1 << (CParser.RESTA - 37)) | (1 << (CParser.TRUE - 37)) | (1 << (CParser.FALSE - 37)) | (1 << (CParser.IDENTIFIER - 37)) | (1 << (CParser.NUMBER - 37)) | (1 << (CParser.STRING - 37)) | (1 << (CParser.CHAR - 37)))) !== 0)) {
                 this.state = 194;
                 this.expr();
             }
@@ -2526,7 +2527,7 @@ CParser.prototype.asignation = function() {
             this.state = 227;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-            if(_la===CParser.NEW || _la===CParser.PIZQ || ((((_la - 37)) & ~0x1f) == 0 && ((1 << (_la - 37)) & ((1 << (CParser.RESTA - 37)) | (1 << (CParser.TRUE - 37)) | (1 << (CParser.FALSE - 37)) | (1 << (CParser.IDENTIFIER - 37)) | (1 << (CParser.NUMBER - 37)) | (1 << (CParser.CHAR - 37)))) !== 0)) {
+            if(_la===CParser.NEW || _la===CParser.PIZQ || ((((_la - 37)) & ~0x1f) == 0 && ((1 << (_la - 37)) & ((1 << (CParser.RESTA - 37)) | (1 << (CParser.TRUE - 37)) | (1 << (CParser.FALSE - 37)) | (1 << (CParser.IDENTIFIER - 37)) | (1 << (CParser.NUMBER - 37)) | (1 << (CParser.STRING - 37)) | (1 << (CParser.CHAR - 37)))) !== 0)) {
                 this.state = 226;
                 this.actPars();
             }
@@ -3437,6 +3438,29 @@ FactorNuevoContext.prototype.accept = function(visitor) {
 };
 
 
+function FactorStringContext(parser, ctx) {
+	FactorContext.call(this, parser);
+    FactorContext.prototype.copyFrom.call(this, ctx);
+    return this;
+}
+
+FactorStringContext.prototype = Object.create(FactorContext.prototype);
+FactorStringContext.prototype.constructor = FactorStringContext;
+
+CParser.FactorStringContext = FactorStringContext;
+
+FactorStringContext.prototype.STRING = function() {
+    return this.getToken(CParser.STRING, 0);
+};
+FactorStringContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof CParserVisitor ) {
+        return visitor.visitFactorString(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
 
 CParser.FactorContext = FactorContext;
 
@@ -3446,7 +3470,7 @@ CParser.prototype.factor = function() {
     this.enterRule(localctx, 38, CParser.RULE_factor);
     var _la = 0; // Token type
     try {
-        this.state = 303;
+        this.state = 304;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case CParser.IDENTIFIER:
@@ -3473,7 +3497,7 @@ CParser.prototype.factor = function() {
                 this.state = 289;
                 this._errHandler.sync(this);
                 _la = this._input.LA(1);
-                if(_la===CParser.NEW || _la===CParser.PIZQ || ((((_la - 37)) & ~0x1f) == 0 && ((1 << (_la - 37)) & ((1 << (CParser.RESTA - 37)) | (1 << (CParser.TRUE - 37)) | (1 << (CParser.FALSE - 37)) | (1 << (CParser.IDENTIFIER - 37)) | (1 << (CParser.NUMBER - 37)) | (1 << (CParser.CHAR - 37)))) !== 0)) {
+                if(_la===CParser.NEW || _la===CParser.PIZQ || ((((_la - 37)) & ~0x1f) == 0 && ((1 << (_la - 37)) & ((1 << (CParser.RESTA - 37)) | (1 << (CParser.TRUE - 37)) | (1 << (CParser.FALSE - 37)) | (1 << (CParser.IDENTIFIER - 37)) | (1 << (CParser.NUMBER - 37)) | (1 << (CParser.STRING - 37)) | (1 << (CParser.CHAR - 37)))) !== 0)) {
                     this.state = 288;
                     this.actPars();
                 }
@@ -3519,6 +3543,12 @@ CParser.prototype.factor = function() {
             this.expr();
             this.state = 301;
             this.match(CParser.PDER);
+            break;
+        case CParser.STRING:
+            localctx = new FactorStringContext(this, localctx);
+            this.enterOuterAlt(localctx, 7);
+            this.state = 303;
+            this.match(CParser.STRING);
             break;
         default:
             throw new antlr4.error.NoViableAltException(this);
@@ -3614,19 +3644,19 @@ CParser.prototype.booleano = function() {
     var localctx = new BooleanoContext(this, this._ctx, this.state);
     this.enterRule(localctx, 40, CParser.RULE_booleano);
     try {
-        this.state = 307;
+        this.state = 308;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case CParser.TRUE:
             localctx = new VerdadContext(this, localctx);
             this.enterOuterAlt(localctx, 1);
-            this.state = 305;
+            this.state = 306;
             this.match(CParser.TRUE);
             break;
         case CParser.FALSE:
             localctx = new FalsoContext(this, localctx);
             this.enterOuterAlt(localctx, 2);
-            this.state = 306;
+            this.state = 307;
             this.match(CParser.FALSE);
             break;
         default:
@@ -3735,25 +3765,25 @@ CParser.prototype.asigClass = function() {
     var localctx = new AsigClassContext(this, this._ctx, this.state);
     this.enterRule(localctx, 42, CParser.RULE_asigClass);
     try {
-        this.state = 315;
+        this.state = 316;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case CParser.PUNTO:
             localctx = new AsignarClaseContext(this, localctx);
             this.enterOuterAlt(localctx, 1);
-            this.state = 309;
-            this.match(CParser.PUNTO);
             this.state = 310;
+            this.match(CParser.PUNTO);
+            this.state = 311;
             this.match(CParser.IDENTIFIER);
             break;
         case CParser.PCIZQ:
             localctx = new AsignarListaContext(this, localctx);
             this.enterOuterAlt(localctx, 2);
-            this.state = 311;
-            this.match(CParser.PCIZQ);
             this.state = 312;
-            this.expr();
+            this.match(CParser.PCIZQ);
             this.state = 313;
+            this.expr();
+            this.state = 314;
             this.match(CParser.PCDER);
             break;
         default:
@@ -3942,43 +3972,43 @@ CParser.prototype.relop = function() {
     var localctx = new RelopContext(this, this._ctx, this.state);
     this.enterRule(localctx, 44, CParser.RULE_relop);
     try {
-        this.state = 323;
+        this.state = 324;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case CParser.COMPARACION:
             localctx = new IgualIgualContext(this, localctx);
             this.enterOuterAlt(localctx, 1);
-            this.state = 317;
+            this.state = 318;
             this.match(CParser.COMPARACION);
             break;
         case CParser.DIFERENTE:
             localctx = new DifereteDeContext(this, localctx);
             this.enterOuterAlt(localctx, 2);
-            this.state = 318;
+            this.state = 319;
             this.match(CParser.DIFERENTE);
             break;
         case CParser.MAYOR:
             localctx = new MayorQueContext(this, localctx);
             this.enterOuterAlt(localctx, 3);
-            this.state = 319;
+            this.state = 320;
             this.match(CParser.MAYOR);
             break;
         case CParser.MAYORIGUAL:
             localctx = new MayorIgualQueContext(this, localctx);
             this.enterOuterAlt(localctx, 4);
-            this.state = 320;
+            this.state = 321;
             this.match(CParser.MAYORIGUAL);
             break;
         case CParser.MENOR:
             localctx = new MenorQueContext(this, localctx);
             this.enterOuterAlt(localctx, 5);
-            this.state = 321;
+            this.state = 322;
             this.match(CParser.MENOR);
             break;
         case CParser.MENORIGUAL:
             localctx = new MenorIgualQueContext(this, localctx);
             this.enterOuterAlt(localctx, 6);
-            this.state = 322;
+            this.state = 323;
             this.match(CParser.MENORIGUAL);
             break;
         default:
@@ -4075,19 +4105,19 @@ CParser.prototype.addop = function() {
     var localctx = new AddopContext(this, this._ctx, this.state);
     this.enterRule(localctx, 46, CParser.RULE_addop);
     try {
-        this.state = 327;
+        this.state = 328;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case CParser.SUMA:
             localctx = new SumarContext(this, localctx);
             this.enterOuterAlt(localctx, 1);
-            this.state = 325;
+            this.state = 326;
             this.match(CParser.SUMA);
             break;
         case CParser.RESTA:
             localctx = new RestarContext(this, localctx);
             this.enterOuterAlt(localctx, 2);
-            this.state = 326;
+            this.state = 327;
             this.match(CParser.RESTA);
             break;
         default:
@@ -4207,25 +4237,25 @@ CParser.prototype.mulop = function() {
     var localctx = new MulopContext(this, this._ctx, this.state);
     this.enterRule(localctx, 48, CParser.RULE_mulop);
     try {
-        this.state = 332;
+        this.state = 333;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case CParser.MUL:
             localctx = new MultiplicarContext(this, localctx);
             this.enterOuterAlt(localctx, 1);
-            this.state = 329;
+            this.state = 330;
             this.match(CParser.MUL);
             break;
         case CParser.DIV:
             localctx = new DividirContext(this, localctx);
             this.enterOuterAlt(localctx, 2);
-            this.state = 330;
+            this.state = 331;
             this.match(CParser.DIV);
             break;
         case CParser.MODULO:
             localctx = new ModularContext(this, localctx);
             this.enterOuterAlt(localctx, 3);
-            this.state = 331;
+            this.state = 332;
             this.match(CParser.MODULO);
             break;
         default:

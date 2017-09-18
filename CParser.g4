@@ -78,6 +78,7 @@ factor		            : IDENTIFIER (asigClass)* ( PIZQ  (actPars)?  PDER )?       
 		                | booleano                                                                      #factorBool
 		                | NEW IDENTIFIER                                                                #factorNuevo
 		                | PIZQ expr PDER                                                                #factorExpresion
+		                | STRING                                                                        #factorString
 		                ;
 
 booleano                : TRUE                                                                          #verdad

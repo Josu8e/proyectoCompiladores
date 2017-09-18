@@ -47,7 +47,7 @@ Acontextual.prototype.visitConstante = function(ctx) {
     var tipo = this.visit(ctx.type());
     var nombre = ctx.IDENTIFIER().getSymbol().text;
     var temp = tabla.buscar(nombre);
-    if (temp === null) {
+    if (temp == null) {
         tabla.insertar(nombre, tipo, 0, nivel, 'variable');
         var valor = this.visit(ctx.numStr());
         tabla.agregarValor(nombre, valor);
@@ -78,7 +78,7 @@ Acontextual.prototype.visitVariable = function(ctx) {
     var tipo = this.visit(ctx.type());
     var nombre = ctx.IDENTIFIER(0).getSymbol().text;
     var temp  = tabla.buscar(nombre);
-    if (temp === null) {
+    if (temp == null) {
         tabla.insertar(nombre, tipo, 0, nivel, 'variable');
     }
     else{
@@ -87,7 +87,7 @@ Acontextual.prototype.visitVariable = function(ctx) {
     for (i=1;i<=ctx.IDENTIFIER().length-1;i++) {
         nombre=ctx.IDENTIFIER(i).getSymbol().text;
         temp = tabla.buscar(nombre);
-        if (temp === null) {
+        if (temp == null) {
             tabla.insertar(nombre, tipo, 0, nivel, 'variable');
         }
         else{
@@ -99,9 +99,14 @@ Acontextual.prototype.visitVariable = function(ctx) {
 };
 
 
+
 // Visit a parse tree produced by CParser#clase.
 Acontextual.prototype.visitClase = function(ctx) {
-    this.visitChildren(ctx);
+    tabla.insertarClase(ctx.IDENTIFIER().getSymbol().text);
+    for(var i =0;i<ctx.varDecl().length;i++){
+        //fixme: como saber que voy desde el class declaration
+
+    }
     return null;
 };
 
@@ -121,11 +126,11 @@ Acontextual.prototype.visitMetodo = function(ctx) {
 
     var temp  = tabla.buscar(nombre);
 
-    if(temp === null){
+    if(temp == null){
         tabla.insertar(nombre,tipo,parametros,0,'funcion');
     }
     else{
-        if(temp.cantidadParametros === parametros){
+        if(temp.cantidadParametros == parametros){
             textArea.innerHTML = "Error en linea "+ ctx.IDENTIFIER().getSymbol().line +"  columna "+ ctx.IDENTIFIER().getSymbol().column + " funcion "+ nombre+" ya definida con la misma cantida de parametros";
         }
         else {
@@ -138,8 +143,13 @@ Acontextual.prototype.visitMetodo = function(ctx) {
     for (i=0;i<=ctx.varDecl().length-1;i++) {
         this.visit(ctx.varDecl(i));
     }
-    this.visit(ctx.block());
-    console.log(ctx.IDENTIFIER().getSymbol().text);
+    var type = this.visit(ctx.block());
+    if (type != null){
+        if(type != tipo){
+            textArea.innerHTML = "Error en la linea "+ ctx.block().getSymbol().line+" en la columna "+ctx.block().getSymbol().column+ " la funcion solo puede retornar tipo "+ tipo;
+        }
+    }
+
     tabla.imprimir();
     tabla.eliminarNivel(nivel);
     nivel--;
@@ -183,7 +193,7 @@ Acontextual.prototype.visitDefVarMul = function(ctx) {
         tipo=this.visit(ctx.type(i));
         nombre=ctx.IDENTIFIER(i).getSymbol().text;
         temp = tabla.buscar(nombre);
-        if (temp === null) {
+        if (temp == null) {
             tabla.insertar(nombre, tipo, 0, nivel, 'variable');
         }
         else{
@@ -232,25 +242,50 @@ Acontextual.prototype.visitIdT = function(ctx) {
 
 // Visit a parse tree produced by CParser#desigClassdef.
 Acontextual.prototype.visitDesigClassdef = function(ctx) {
-
+    //todo: cualquier vara cambiar lo de la clase
     var temp = tabla.buscar(ctx.IDENTIFIER().getSymbol().text);
-    if(temp === null){
-        textArea.innerHTML = "Error en linea "+ ctx.IDENTIFIER().getSymbol().line +"  columna "+ ctx.IDENTIFIER().getSymbol().column + " variable "+ nombre+" no definida";
+    if(temp == null){
+        temp = tabla.buscarClase(ctx.IDENTIFIER().getSymbol().text);
+        if (temp == null){
+            textArea.innerHTML = "Error en linea "+ ctx.IDENTIFIER().getSymbol().line +"  columna "+ ctx.IDENTIFIER().getSymbol().column + nombre+" no definida";    
+        }
+        else{
+            if(ctx.asigClass(0)!= null) {
+                var nombre = this.visit(ctx.asigClass(0));
+                var temp = tabla.buscarAtributos(ctx.IDENTIFIER().getSymbol().text, nombre);
+                var valor = this.visit(ctx.asignation());
+                var type = typeof valor;
+                //fixme: revisar que sea correcto la comparacion entre type y el tipo del objeto
+                if (temp.tipo != type) {
+                    textArea.innerHTML = "Error en linea " + ctx.IDENTIFIER().getSymbol().line + " columna " + ctx.IDENTIFIER().getSymbol().column + " no se puede asignar " + type + "en una variable de tipo " + temp.tipo;
+                }
+                else if (temp.nivel != nivel) {
+                    textArea.innerHTML = "Error en linea " + ctx.IDENTIFIER().getSymbol().line + " columna " + ctx.IDENTIFIER().getSymbol().column + "variable no definida en este alcance";
+                } else {
+                    temp.valor = valor;
+                }
+            }
+                
+        }
+        
     }
     else{
-        //TODO: Asigclass y noc como hacerlo
         var valor = this.visit(ctx.asignation());
         var type = typeof valor;
         //fixme: revisar que sea correcto la comparacion entre type y el tipo del objeto
-        if (temp.tipo != type){
-            textArea.innerHTML = "Error en linea "+ ctx.IDENTIFIER().getSymbol().line+ " columna "+ctx.IDENTIFIER().getSymbol().column+ " no se puede asignar "+ type + "en una variable de tipo "+temp.tipo;
+        if (temp.tipo != type) {
+            textArea.innerHTML = "Error en linea " + ctx.IDENTIFIER().getSymbol().line + " columna " + ctx.IDENTIFIER().getSymbol().column + " no se puede asignar " + type + "en una variable de tipo " + temp.tipo;
         }
-        else if(temp.nivel != nivel){
-            textArea.innerHTML = "Error en linea "+ ctx.IDENTIFIER().getSymbol().line+ " columna "+ctx.IDENTIFIER().getSymbol().column+ "variable no definida en este alcance";
-        }else {
+        else if (temp.nivel != nivel) {
+            textArea.innerHTML = "Error en linea " + ctx.IDENTIFIER().getSymbol().line + " columna " + ctx.IDENTIFIER().getSymbol().column + "variable no definida en este alcance";
+        } else {
             temp.valor = valor;
         }
+        
     }
+    
+    
+    /**/
 
     return null;
 };
@@ -323,10 +358,15 @@ Acontextual.prototype.visitReturnDef = function(ctx) {
 
 // Visit a parse tree produced by CParser#readDef.
 Acontextual.prototype.visitReadDef = function(ctx) {
-    try{
-        this.visit(ctx.asigClass());
+    //fixme: preguntar a viquez para ver si hay que buscar tambien el identificador
+    for (var i=0;i<ctx.asigClass().length;i++){
+        var nombre = this.visit(ctx.asigClass(i));
+        var temp = tabla.buscarAtributos(ctx.IDENTIFIER().getSymbol().text,nombre);
+        if(temp == null){
+            textArea.innerHTML = "Error en linea "+ ctx.asigClass(i).getSymbol().line + " columna "+ctx.asigClass(i).getSymbol().column+ " atributo no encontrado en la clase";
+        }
+
     }
-    catch (err){}
     return null;
 };
 
@@ -361,6 +401,7 @@ Acontextual.prototype.visitAsignacion = function(ctx) {
 
 // Visit a parse tree produced by CParser#lista.
 Acontextual.prototype.visitLista = function(ctx) {
+    //todo: esperar respuesta de viquez
     try{
         this.visit(ctx.actPars());
     }
@@ -385,45 +426,98 @@ Acontextual.prototype.visitMasmas = function(ctx) {
 
 // Visit a parse tree produced by CParser#bloque.
 Acontextual.prototype.visitBloque = function(ctx) {
-    //fixme: no estoy del todo seguro que sea asi probablemente tenga que retornar algo
-    this.visitChildren(ctx);
-    return null;
+    return this.visitChildren(ctx);
 };
 
 
 // Visit a parse tree produced by CParser#parteLista.
 Acontextual.prototype.visitParteLista = function(ctx) {
+    this.visitChildren(ctx);
     return null;
 };
 
 
 // Visit a parse tree produced by CParser#condicion.
 Acontextual.prototype.visitCondicion = function(ctx) {
-    return null;
+    var bool = this.visit(ctx.condTerm(0));
+    for(var i=1;i<ctx.condTerm().length-1;i++){
+        bool = this.visit(ctx.condTerm(i));
+    }
+    return bool;
 };
 
 
 // Visit a parse tree produced by CParser#cTerm.
 Acontextual.prototype.visitCTerm = function(ctx) {
-    return null;
+    var bool = this.visit(ctx.condFact(0));
+    for(var i=1;i<ctx.condFact().length-1;i++){
+        bool = this.visit(ctx.condFact(i));
+    }
+    return bool;
 };
 
 
 // Visit a parse tree produced by CParser#cFact.
 Acontextual.prototype.visitCFact = function(ctx) {
-    return null;
+    var expr0= typeof this.visit(ctx.expr(0));
+    var expr1 = typeof this.visit(ctx.expr(1));
+
+    if(expr0 == expr1){
+        return 'bool';
+    }
+
+    return 'no bool';
 };
 
 
 // Visit a parse tree produced by CParser#expresion.
 Acontextual.prototype.visitExpresion = function(ctx) {
-    return null;
+    var termino1 = this.visit(ctx.term(0));
+    for(var i = 1;i<ctx.term().length-1;i++){
+        var sumaResta = this.visit(ctx.addop(i));
+        var terminoN = this.visit(ctx.term(i));
+        try {
+
+            if (sumaResta == '-') {
+                termino1 = termino1 - terminoN;
+            }
+            else if (sumaResta == '+') {
+                termino1 = termino1 + terminoN;
+            }
+        }
+        catch (e){
+            textArea.innerHTML = "Error en la linea "+ ctx.term(i).getSymbol().line+ " columna "+ctx.term(i).getSymbol().column+ " no se pueden operar terminos de diferente tipo";
+        }
+
+    }
+    return termino1;
 };
 
 
 // Visit a parse tree produced by CParser#termino.
 Acontextual.prototype.visitTermino = function(ctx) {
-    return null;
+    var termino1 = this.visit(ctx.factor(0));
+    for(var i = 1;i<ctx.factor().length-1;i++){
+        var mulop = this.visit(ctx.mulop(i));
+        var terminoN = this.visit(ctx.factor(i));
+        try {
+
+            if (mulop == '%') {
+                termino1 = termino1 % terminoN;
+            }
+            else if (mulop == '*') {
+                termino1 = termino1 * terminoN;
+            }
+            else if (mulop == '/') {
+                termino1 = termino1 / terminoN;
+            }
+        }
+        catch (e){
+            textArea.innerHTML = "Error en la linea "+ ctx.term(i).getSymbol().line+ " columna "+ctx.term(i).getSymbol().column+ " no se pueden operar terminos de diferente tipo";
+        }
+
+    }
+    return termino1;
 };
 
 
@@ -435,14 +529,21 @@ Acontextual.prototype.visitAsignador = function(ctx) {
 
 // Visit a parse tree produced by CParser#factorNumero.
 Acontextual.prototype.visitFactorNumero = function(ctx) {
-    return null;
+    var num = parseInt(ctx.NUMBER().getSymbol().text,10);
+
+    return num;
 };
 
 
 // Visit a parse tree produced by CParser#factorCaracter.
 Acontextual.prototype.visitFactorCaracter = function(ctx) {
-    return null;
+    return ctx.CHAR().getSymbol().text;
 };
+
+Acontextual.prototype.visitFactorString=function (ctx) {
+    return ctx.CHAR().getSymbol().text;
+};
+
 
 
 // Visit a parse tree produced by CParser#factorBool.

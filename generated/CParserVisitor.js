@@ -294,6 +294,12 @@ CParserVisitor.prototype.visitFactorExpresion = function(ctx) {
 };
 
 
+// Visit a parse tree produced by CParser#factorString.
+CParserVisitor.prototype.visitFactorString = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by CParser#verdad.
 CParserVisitor.prototype.visitVerdad = function(ctx) {
   return this.visitChildren(ctx);
