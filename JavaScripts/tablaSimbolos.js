@@ -1,9 +1,45 @@
 var tabla;
+var tablaClase;
 
 function tablaSimbolos() {
     tabla = [];
+    tablaClase = [];
     return this
 }
+
+function clase(nombre) {
+    this.nombre = nombre;
+    this.tablaAtributos = [];
+}
+
+tablaSimbolos.prototype.insertarClase = function (nombre) {
+    var clase = new clase(nombre);
+    tablaClase.push(clase);
+};
+
+tablaSimbolos.prototype.buscarClase = function (nombre) {
+    var temp = null;
+    for(var i=0;i<tablaClase.length;i++){
+        if (tablaClase[i].nombre== nombre){
+            return tablaClase[i];
+        }
+    }
+    return temp;
+
+};
+
+tablaSimbolos.prototype.insertarAtributosClase = function (nombreC,nombre,tipo,cantidadParametros,nivel,control) {
+    var id = new Id(nombre,tipo,cantidadParametros,nivel,control);
+    var temp = this.buscarClase(nombreC);
+    if (temp != null) {
+        temp.tablaAtributos.push(id);
+    }
+    else{
+        return "clase "+ nombreC +" no encontrada";
+    }
+
+};
+
 
 function Id(nombre,tipo,cantidadParametros,nivel,control) {
     this.nombre = nombre;
