@@ -27,7 +27,7 @@ tablaSimbolos.prototype.buscarClase = function (nombre) {
     return temp;
 };
 
-tablaSimbolos().prototype.buscarAtributos=function (nombreC,nombre) {
+tablaSimbolos.prototype.buscarAtributos=function (nombreC,nombre) {
     var temp = this.buscarClase(nombreC);
     for(var i=0;i<temp.tablaAtributos.length;i++){
         if(temp.tablaAtributos[i].nombre == nombre){

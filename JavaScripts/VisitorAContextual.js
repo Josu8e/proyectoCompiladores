@@ -1,13 +1,13 @@
 var gramarVisitor = require('generated/CParserVisitor').CParserVisitor;
 var tablaSimbolos = require('JavaScripts/tablaSimbolos');
-var tabla = null;
+var global = require('Acontextual');
+var tabla = global.Tabla
 
 var textArea = document.getElementById('consola');
 var nivel = 0;
 
 function Acontextual() {
     gramarVisitor.call(this);
-    tabla = new tablaSimbolos.tablaSimbolos();
     return this;
 }
 

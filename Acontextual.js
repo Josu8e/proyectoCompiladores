@@ -2,12 +2,16 @@ var antlr4 = require('antlr4/index');
 var CParser = require('generated/CParser');
 var CScanner = require('generated/CScanner');
 var contextual = require('JavaScripts/VisitorAContextual');
+var tablaSimbolos = require('JavaScripts/tablaSimbolos');
+var tabla = null;
 
 
 
 function AContextual() {
 
     editor = $('textarea').data('ace-editor');
+
+    tabla = tablaSimbolos.tablaSimbolos();
 
     var textArea = document.getElementById('consola');
     textArea.Value = "";
@@ -25,3 +29,5 @@ function AContextual() {
 
 
 }
+
+exports = { Tabla: tabla  };
