@@ -11,6 +11,13 @@ function recorridoObjeto() {
     return this;
 }
 
+
+recorridoObjeto.prototype.visitDeclaracionClase = function (ctx) {
+    this.visitChildren(ctx);
+    return null;
+
+}
+
 recorridoObjeto.prototype.visitClase = function (ctx) {
     var temp=tabla.buscarClase(ctx.IDENTIFIER().getSymbol().text);
     if(temp != null){
