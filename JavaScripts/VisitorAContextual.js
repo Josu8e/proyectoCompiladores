@@ -437,127 +437,114 @@ Acontextual.prototype.visitCTerm = function(ctx) {
 
 // Visit a parse tree produced by CParser#cFact.
 Acontextual.prototype.visitCFact = function(ctx) {
+    var temp1= this.visit(ctx.expr(0));
+    var temp2 = this.visit(ctx.expr(1));
+    var retorno;
 
+    if(temp1 != temp2){
+        textArea.innerHTML = "Error en linea "+ ctx.relop().getSymbol().line+ " columna "+ctx.relop().getSymbol().column+ " condicion no booleana";
+        retorno = 'undefined';
+    }
+    else{
+        retorno = temp1;
+    }
+    return retorno;
 
-    return null;
 };
 
 
 // Visit a parse tree produced by CParser#expresion.
 Acontextual.prototype.visitExpresion = function(ctx) {
-    var termino1 = this.visit(ctx.term(0));
-    for(var i = 1;i<ctx.term().length-1;i++){
-        var sumaResta = this.visit(ctx.addop(i));
-        var terminoN = this.visit(ctx.term(i));
-        try {
-
-            if (sumaResta == '-') {
-                termino1 = termino1 - terminoN;
-            }
-            else if (sumaResta == '+') {
-                termino1 = termino1 + terminoN;
-            }
+    var term = this.visit(ctx.term(0));
+    var retorno;
+    for (var i=1;i<ctx.term().length;i++){
+        var term2 = this.visit(ctx.term(i));
+        if (term != term2){
+            textArea.innerHTML = "Error en linea: "+ ctx.addop(i).getSymbol().line+ " columna "+ctx.addop(i).getSymbol().column+ " no se puede realizar la operacion";
         }
-        catch (e){
-            textArea.innerHTML = "Error en la linea "+ ctx.term(i).getSymbol().line+ " columna "+ctx.term(i).getSymbol().column+ " no se pueden operar terminos de diferente tipo";
-        }
-
     }
-    return termino1;
+    return null;
 };
 
 
 // Visit a parse tree produced by CParser#termino.
 Acontextual.prototype.visitTermino = function(ctx) {
-    var termino1 = this.visit(ctx.factor(0));
-    for(var i = 1;i<ctx.factor().length-1;i++){
-        var mulop = this.visit(ctx.mulop(i));
-        var terminoN = this.visit(ctx.factor(i));
-        try {
-
-            if (mulop == '%') {
-                termino1 = termino1 % terminoN;
-            }
-            else if (mulop == '*') {
-                termino1 = termino1 * terminoN;
-            }
-            else if (mulop == '/') {
-                termino1 = termino1 / terminoN;
-            }
+    var term = this.visit(ctx.factor(0));
+    var retorno;
+    for (var i=1;i<ctx.factor().length;i++){
+        var term2 = this.visit(ctx.factor(i));
+        if (term != term2){
+            textArea.innerHTML = "Error en linea: "+ ctx.mulop(i).getSymbol().line+ " columna "+ctx.addop(i).getSymbol().column+ " no se puede realizar la operacion";
         }
-        catch (e){
-            textArea.innerHTML = "Error en la linea "+ ctx.term(i).getSymbol().line+ " columna "+ctx.term(i).getSymbol().column+ " no se pueden operar terminos de diferente tipo";
-        }
-
     }
-    return termino1;
+    return null;
 };
 
 
 // Visit a parse tree produced by CParser#asignador.
 Acontextual.prototype.visitAsignador = function(ctx) {
-    return null;
+    var temp=tabla.buscar(ctx.IDENTIFIER().getSymbol().text);
+    if (temp == null){
+        textArea.innerHTML = "Error en linea " + ctx.IDENTIFIER().getSymbol().line + " columna " + ctx.IDENTIFIER().getSymbol().column + "variable no definida en este alcance";
+    }
+    return temp.tipo;
 };
 
 
 // Visit a parse tree produced by CParser#factorNumero.
 Acontextual.prototype.visitFactorNumero = function(ctx) {
-    var num = parseInt(ctx.NUMBER().getSymbol().text,10);
-
-    return num;
+    return 'int';
 };
 
 
 // Visit a parse tree produced by CParser#factorCaracter.
 Acontextual.prototype.visitFactorCaracter = function(ctx) {
-    return ctx.CHAR().getSymbol().text;
+    return 'char';
 };
 
 Acontextual.prototype.visitFactorString=function (ctx) {
-    return ctx.CHAR().getSymbol().text;
+    return 'string';
 };
 
 
 
 // Visit a parse tree produced by CParser#factorBool.
 Acontextual.prototype.visitFactorBool = function(ctx) {
-    return null;
+    return this.visit(ctx.booleano());
 };
 
 
 // Visit a parse tree produced by CParser#factorNuevo.
 Acontextual.prototype.visitFactorNuevo = function(ctx) {
-    return null;
+    return 'undefined';
 };
 
 
 // Visit a parse tree produced by CParser#factorExpresion.
 Acontextual.prototype.visitFactorExpresion = function(ctx) {
-    return null;
+    return 'undefined';
 };
 
 
 // Visit a parse tree produced by CParser#verdad.
 Acontextual.prototype.visitVerdad = function(ctx) {
-    return null;
+    return 'true';
 };
 
 
 // Visit a parse tree produced by CParser#falso.
 Acontextual.prototype.visitFalso = function(ctx) {
-    return null;
+    return 'false';
 };
 
 
-// Visit a parse tree produced by CParser#designador.
-Acontextual.prototype.visitDesignador = function(ctx) {
-    return null;
-};
+
+
 
 
 // Visit a parse tree produced by CParser#asignarClase.
 Acontextual.prototype.visitAsignarClase = function(ctx) {
-    return null;
+    return ctx.IDENTIFIER().getSymbol().text;
 };
 
 
