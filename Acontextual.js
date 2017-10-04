@@ -3,15 +3,20 @@ var CParser = require('generated/CParser');
 var CScanner = require('generated/CScanner');
 var contextual = require('JavaScripts/VisitorAContextual');
 var tablaSimbolos = require('JavaScripts/tablaSimbolos');
-var tabla = null;
+var tabla;
 
 
 
 function AContextual() {
 
+
+    console.log("hoal");
+
+    tabla = new tablaSimbolos.tablaSimbolos();
+    console.log(tabla);
+
     editor = $('textarea').data('ace-editor');
 
-    tabla = tablaSimbolos.tablaSimbolos();
 
     var textArea = document.getElementById('consola');
     textArea.Value = "";

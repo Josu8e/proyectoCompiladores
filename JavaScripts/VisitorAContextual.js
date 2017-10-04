@@ -1,13 +1,14 @@
 var gramarVisitor = require('generated/CParserVisitor').CParserVisitor;
 var tablaSimbolos = require('JavaScripts/tablaSimbolos');
 var global = require('Acontextual');
-var tabla = global.Tabla
+var tabla;
 
 var textArea = document.getElementById('consola');
 var nivel = 0;
 
 function Acontextual() {
     gramarVisitor.call(this);
+    tabla = global.Tabla;
     return this;
 }
 
@@ -66,7 +67,8 @@ Acontextual.prototype.visitConstante = function(ctx) {
     if (temp == null) {
         tabla.insertar(nombre, tipo, 0, nivel, 'constante');
         var valor = this.visit(ctx.numStr());
-        tabla[-1].valor = valor;
+        //fixme: reparar xq es tabla.tabla no se esta accediendo bien
+        tabla[tabla.length-1].valor = valor;
     }
     else{
         textArea.innerHTML = "Error en linea "+ ctx.IDENTIFIER().getSymbol().line +"  columna "+ ctx.IDENTIFIER().getSymbol().column + " variable "+ nombre+" ya definida";

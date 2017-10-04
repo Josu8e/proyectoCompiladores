@@ -1,7 +1,7 @@
 var gramarVisitor = require('generated/CParserVisitor').CParserVisitor;
 var tablaSimbolos = require('JavaScripts/tablaSimbolos');
 var global = require('Acontextual');
-var tabla = global.Tabla
+var tabla = global.Tabla;
 
 var textArea = document.getElementById('consola');
 

@@ -4,7 +4,7 @@ var tablaClase;
 function tablaSimbolos() {
     tabla = [];
     tablaClase = [];
-    return this
+    return this;
 }
 
 function clase(nombre) {
