@@ -10,7 +10,7 @@ var tabla;
 function AContextual() {
 
 
-    console.log("hoal");
+
 
     tabla = new tablaSimbolos.tablaSimbolos();
     console.log(tabla);
@@ -35,4 +35,4 @@ function AContextual() {
 
 }
 
-exports = { Tabla: tabla  };
+exports = {Tabla:tabla};

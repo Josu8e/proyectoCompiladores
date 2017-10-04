@@ -562,6 +562,7 @@ PrityPrint.prototype.visitAsignarClase = function(ctx) {
     printtab(cont);
     textArea.innerHTML+= ctx.constructor.name+ " " + ctx.IDENTIFIER().getSymbol().text + '\n';
     cont++;
+    this.visitChildren(ctx);
     cont--;
     return null;
 };

@@ -57,7 +57,7 @@ asignation              : ASIGN expr                                            
                         | DISMINUCION                                                                   #masmas
                         ;
 
-block		            : CORCHETEIZQ  (statement)? CORCHETEDER                                         #bloque
+block		            : CORCHETEIZQ  (statement)* CORCHETEDER                                         #bloque
                         ;
 actPars	                : expr (COMA expr)?                                                             #parteLista
                         ;
