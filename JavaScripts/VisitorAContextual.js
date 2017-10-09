@@ -416,8 +416,7 @@ Acontextual.prototype.visitMasmas = function(ctx) {
 
 // Visit a parse tree produced by CParser#bloque.
 Acontextual.prototype.visitBloque = function(ctx) {
-    for(var i = 0; i<ctx.statement().length;i++)
-        var algo = this.visit(ctx.statement());
+    var algo = this.visit(ctx.statement());
     var retorno;
     for(var i=0; i<algo.length;i++){
         if(algo[i] != null){
@@ -454,9 +453,10 @@ Acontextual.prototype.visitCFact = function(ctx) {
     var temp1= this.visit(ctx.expr(0));
     var temp2 = this.visit(ctx.expr(1));
     var retorno;
+    var error = this.visit(ctx.relop());
 
     if(temp1 != temp2){
-        textArea.innerHTML += "\n Error en linea "+ ctx.relop().getSymbol().line+ " columna "+ctx.relop().getSymbol().column+ " condicion no booleana";
+        textArea.innerHTML += "\n Error en linea "+ error.getSymbol().line+ " columna "+error.getSymbol().column+ " condicion no booleana";
         retorno = 'undefined';
     }
     else{
@@ -473,7 +473,8 @@ Acontextual.prototype.visitExpresion = function(ctx) {
     for (var i=1;i<ctx.term().length;i++){
         var term2 = this.visit(ctx.term(i));
         if (term != term2){
-            textArea.innerHTML += "\n Error en linea: "+ ctx.addop(i).getSymbol().line+ " columna "+ctx.addop(i).getSymbol().column+ " no se puede realizar la operacion";
+            var error = this.visit(ctx.addop(i));
+            textArea.innerHTML += "\n Error en linea: "+ error.getSymbol().line+ " columna "+error.getSymbol().column+ " no se puede realizar la operacion";
         }
     }
     return term;
@@ -486,7 +487,8 @@ Acontextual.prototype.visitTermino = function(ctx) {
     for (var i=1;i<ctx.factor().length;i++){
         var term2 = this.visit(ctx.factor(i));
         if (term != term2){
-            textArea.innerHTML += "\n Error en linea: "+ ctx.mulop(i).getSymbol().line+ " columna "+ctx.addop(i).getSymbol().column+ " no se puede realizar la operacion";
+            var error = this.visit(ctx.mulop(i));
+            textArea.innerHTML += "\n Error en linea: "+ error.getSymbol().line+ " columna "+error.getSymbol().column+ " no se puede realizar la operacion";
         }
     }
     return term;
@@ -568,67 +570,67 @@ Acontextual.prototype.visitAsignarLista = function(ctx) {
 
 // Visit a parse tree produced by CParser#igualIgual.
 Acontextual.prototype.visitIgualIgual = function(ctx) {
-    return null;
+    return ctx.COMPARACION();
 };
 
 
 // Visit a parse tree produced by CParser#difereteDe.
 Acontextual.prototype.visitDifereteDe = function(ctx) {
-    return null;
+    return ctx.DIFERENTE;
 };
 
 
 // Visit a parse tree produced by CParser#mayorQue.
 Acontextual.prototype.visitMayorQue = function(ctx) {
-    return null;
+    return ctx.MAYOR;
 };
 
 
 // Visit a parse tree produced by CParser#mayorIgualQue.
 Acontextual.prototype.visitMayorIgualQue = function(ctx) {
-    return null;
+    return ctx.MAYORIGUAL;
 };
 
 
 // Visit a parse tree produced by CParser#menorQue.
 Acontextual.prototype.visitMenorQue = function(ctx) {
-    return null;
+    return ctx.MENOR;
 };
 
 
 // Visit a parse tree produced by CParser#menorIgualQue.
 Acontextual.prototype.visitMenorIgualQue = function(ctx) {
-    return null;
+    return ctx.MENORIGUAL;
 };
 
 
 // Visit a parse tree produced by CParser#sumar.
 Acontextual.prototype.visitSumar = function(ctx) {
-    return null;
+    return ctx.SUMA;
 };
 
 
 // Visit a parse tree produced by CParser#restar.
 Acontextual.prototype.visitRestar = function(ctx) {
-    return null;
+    return ctx.RESTA;
 };
 
 
 // Visit a parse tree produced by CParser#multiplicar.
 Acontextual.prototype.visitMultiplicar = function(ctx) {
-    return null;
+    return ctx.MUL;
 };
 
 
 // Visit a parse tree produced by CParser#dividir.
 Acontextual.prototype.visitDividir = function(ctx) {
-    return null;
+    return ctx.DIV;
 };
 
 
 // Visit a parse tree produced by CParser#modular.
 Acontextual.prototype.visitModular = function(ctx) {
-    return null;
+    return ctx.MODULO;
 };
 
 
