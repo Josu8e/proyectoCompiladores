@@ -141,7 +141,7 @@ Acontextual.prototype.visitMetodo = function(ctx) {
     }
     else{
         if(temp.cantidadParametros == parametros){
-            textArea.innerHTML += "\n Error en linea "+ ctx.IDENTIFIER().getSymbol().line +"  columna "+ ctx.IDENTIFIER().getSymbol().column + " funcion "+ nombre+" ya definida con la misma cantida de parametros";
+            textArea.innerHTML += "\n Error en linea "+ ctx.IDENTIFIER().getSymbol().line +"  columna "+ ctx.IDENTIFIER().getSymbol().column + " funcion "+ nombre+" ya definida con la misma cantidad de parametros";
         }
         else {
             tabla.insertar(nombre,tipo,parametros,0,'funcion');

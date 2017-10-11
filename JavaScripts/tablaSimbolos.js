@@ -44,7 +44,7 @@ tablaSimbolos.prototype.insertarAtributosClase = function (nombreC,nombre,tipo,c
         temp.tablaAtributos.push(id);
     }
     else{
-        return "clase "+ nombreC +" no encontrada";
+        return "\n Clase "+ nombreC +" no encontrada";
     }
 
 };

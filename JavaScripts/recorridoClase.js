@@ -27,7 +27,7 @@ recorridoObjeto.prototype.visitClase = function (ctx) {
         }
     }
     else {
-        textArea.innerHTML = "Error en linea "+ ctx.IDENTIFIER().getSymbol().line+ " columna: "+ctx.IDENTIFIER().getSymbol().column+" clase "+ ctx.IDENTIFIER().getSymbol().text +" ya definida"
+        textArea.innerHTML = "\n Error en linea "+ ctx.IDENTIFIER().getSymbol().line+ " columna: "+ctx.IDENTIFIER().getSymbol().column+" clase "+ ctx.IDENTIFIER().getSymbol().text +" ya definida"
     }
 };
 
@@ -45,7 +45,7 @@ recorridoObjeto.prototype.visitVariable = function (ctx) {
           tabla.insertar(nombre, tipo, 0, 0, 'variable');
       }
       else {
-          textArea.innerHTML = "Error en linea " + ctx.IDENTIFIER().getSymbol().line + "  columna " + ctx.IDENTIFIER().getSymbol().column + " variable " + nombre + " ya definida";
+          textArea.innerHTML = "\n Error en linea " + ctx.IDENTIFIER().getSymbol().line + " columna " + ctx.IDENTIFIER().getSymbol().column + " variable " + nombre + " ya definida";
       }
       for (i = 1; i <= ctx.IDENTIFIER().length - 1; i++) {
           nombre = ctx.IDENTIFIER(i).getSymbol().text;
@@ -54,12 +54,12 @@ recorridoObjeto.prototype.visitVariable = function (ctx) {
               tabla.insertar(nombre, tipo, 0, nivel, 'variable');
           }
           else {
-              textArea.innerHTML = "Error en linea " + ctx.IDENTIFIER(i).getSymbol().line + "  columna " + ctx.IDENTIFIER(i).getSymbol().column + " variable " + nombre + " ya definida";
+              textArea.innerHTML = "\n Error en linea " + ctx.IDENTIFIER(i).getSymbol().line + " columna " + ctx.IDENTIFIER(i).getSymbol().column + " variable " + nombre + " ya definida";
           }
       }
   }
   else{
-      textArea.innerHTML = "Error en linea " + ctx.type().getSymbol().line + "  columna " + ctx.type().getSymbol().column + " tipo no identificado";
+      textArea.innerHTML = "\n Error en linea " + ctx.type().getSymbol().line + " columna " + ctx.type().getSymbol().column + " tipo no identificado";
   }
 
     return null;
