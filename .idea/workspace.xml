@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="c482b11c-ad74-4d7e-8fc0-5b254f22ee0e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Acontextual.js" afterPath="$PROJECT_DIR$/Acontextual.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CScanner.g4" afterPath="$PROJECT_DIR$/CScanner.g4" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JavaScripts/VisitorAContextual.js" afterPath="$PROJECT_DIR$/JavaScripts/VisitorAContextual.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JavaScripts/recorridoClase.js" afterPath="$PROJECT_DIR$/JavaScripts/recorridoClase.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/generated/CScanner.js" afterPath="$PROJECT_DIR$/generated/CScanner.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,18 +24,8 @@
       <file leaf-file-name="recorridoClase.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JavaScripts/recorridoClase.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="analisisSintactico.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/analisisSintactico.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+            <state relative-caret-position="160">
+              <caret line="27" column="63" lean-forward="false" selection-start-line="27" selection-start-column="63" selection-end-line="27" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -40,28 +34,8 @@
       <file leaf-file-name="CParser.g4" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CParser.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="98" column="36" lean-forward="false" selection-start-line="98" selection-start-column="26" selection-end-line="98" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VisitorAContextual.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/JavaScripts/VisitorAContextual.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="489" column="44" lean-forward="false" selection-start-line="489" selection-start-column="35" selection-end-line="489" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tablaSimbolos.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JavaScripts/tablaSimbolos.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="3" column="9" lean-forward="false" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+            <state relative-caret-position="175">
+              <caret line="70" column="47" lean-forward="false" selection-start-line="70" selection-start-column="42" selection-end-line="70" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -70,28 +44,38 @@
       <file leaf-file-name="Acontextual.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Acontextual.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+            <state relative-caret-position="322">
+              <caret line="20" column="54" lean-forward="true" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="require.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/require.js">
+      <file leaf-file-name="CScanner.g4" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CScanner.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="201" column="0" lean-forward="false" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
+            <state relative-caret-position="95">
+              <caret line="77" column="68" lean-forward="true" selection-start-line="77" selection-start-column="68" selection-end-line="77" selection-end-column="68" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
+      <file leaf-file-name="tablaSimbolos.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JavaScripts/tablaSimbolos.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="918">
-              <caret line="54" column="34" lean-forward="false" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+            <state relative-caret-position="429">
+              <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VisitorAContextual.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/JavaScripts/VisitorAContextual.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="263" column="186" lean-forward="true" selection-start-line="263" selection-start-column="186" selection-end-line="263" selection-end-column="186" />
               <folding />
             </state>
           </provider>
@@ -108,36 +92,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>atributos</find>
-      <find>Acontextual</find>
-      <find>variable</find>
-      <find>visitvariable</find>
-      <find>[-1]</find>
-      <find>[tabla.l</find>
-      <find>tabla</find>
-      <find>metodo</find>
-      <find>expresio</find>
-      <find>factor</find>
-      <find>desigCl</find>
-      <find>bloque</find>
-      <find>retorno</find>
-      <find>console.log</find>
-      <find>`</find>
-      <find>asignarCl</find>
-      <find>Acon</find>
-      <find>visitbloque</find>
-      <find>desigClas</find>
-      <find>visitBloque</find>
-      <find>catch</find>
-      <find>no se puede asig</find>
-      <find>block</find>
-      <find>&quot;Error en la linea</find>
-      <find>asigClas</find>
-      <find>no definida</find>
-      <find>igual</find>
-      <find>ctx.relop</find>
+      <find>num</find>
+      <find>float</find>
+      <find>this</find>
+      <find>ya esta</find>
+      <find>ya de</find>
+      <find>impr</find>
+      <find>ID</find>
+      <find>Cla</find>
+      <find>innerHtml =</find>
       <find>ctx.</find>
-      <find>ctx.mulop</find>
+      <find>buscarAtr</find>
+      <find>no existe</find>
+      <find>ya definida</find>
+      <find>variable</find>
+      <find>tipo no de</find>
+      <find>menosm</find>
+      <find>no se puede asigna</find>
+      <find>idT</find>
+      <find>visitvariable</find>
+      <find>desig</find>
+      <find>imprimi</find>
+      <find>vari</find>
+      <find>new</find>
+      <find>en una variable de tipo</find>
+      <find>no definida</find>
+      <find>Value</find>
+      <find>innerHtml</find>
+      <find>addop</find>
+      <find>impri</find>
+      <find>buscar</find>
     </findStrings>
     <replaceStrings>
       <replace>this.visit</replace>
@@ -152,19 +136,23 @@
       <replace>ctx.</replace>
       <replace>IDENTIFIER().column</replace>
       <replace>AContextual</replace>
+      <replace>innerHtml +=</replace>
+      <replace>innerHtml</replace>
+      <replace>innerHTML</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/JavaScripts/tablaSimbolos.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/JavaScripts/recorridoClase.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/JavaScripts/VisitorAContextual.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Acontextual.js" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/CScanner.g4" />
         <option value="$PROJECT_DIR$/antlr4/error/ErrorListener.js" />
         <option value="$PROJECT_DIR$/antlr4/error/Errors.js" />
         <option value="$PROJECT_DIR$/antlr4/error/ErrorStrategy.js" />
@@ -175,13 +163,14 @@
         <option value="$PROJECT_DIR$/style.css" />
         <option value="$PROJECT_DIR$/generated/CParserVisitor.js" />
         <option value="$PROJECT_DIR$/js.js" />
-        <option value="$PROJECT_DIR$/JavaScripts/tablaSimbolos.js" />
-        <option value="$PROJECT_DIR$/JavaScripts/recorridoClase.js" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/Acontextual.js" />
         <option value="$PROJECT_DIR$/JavaScripts/prityPrint.js" />
         <option value="$PROJECT_DIR$/analisisSintactico.js" />
         <option value="$PROJECT_DIR$/CParser.g4" />
+        <option value="$PROJECT_DIR$/JavaScripts/tablaSimbolos.js" />
+        <option value="$PROJECT_DIR$/Acontextual.js" />
+        <option value="$PROJECT_DIR$/CScanner.g4" />
+        <option value="$PROJECT_DIR$/JavaScripts/recorridoClase.js" />
         <option value="$PROJECT_DIR$/JavaScripts/VisitorAContextual.js" />
       </list>
     </option>
@@ -215,6 +204,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -231,8 +222,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -321,6 +310,9 @@
       <workItem from="1506029304349" duration="7209000" />
       <workItem from="1507140935068" duration="11115000" />
       <workItem from="1507580902506" duration="1673000" />
+      <workItem from="1507759489885" duration="12364000" />
+      <workItem from="1507834316942" duration="670000" />
+      <workItem from="1507835489654" duration="4908000" />
     </task>
     <task id="LOCAL-00001" summary="cambios en el pretty print">
       <created>1504743221908</created>
@@ -427,11 +419,18 @@
       <option name="project" value="LOCAL" />
       <updated>1507155931317</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="falta verificar las funciones, y ver que se hace con el acceso de la lista">
+      <created>1507772875929</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1507772875929</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147558000" />
+    <option name="totallyTimeSpent" value="165500000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -446,17 +445,17 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18303572" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49749583" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17410715" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49671054" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.49702382" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.50446427" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3223684" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3223684" sideWeight="0.4955357" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39802632" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39802632" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -513,6 +512,16 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -558,22 +567,16 @@
     <MESSAGE value="correccion en el Visitor del acontextual" />
     <MESSAGE value="fallas en la tabla no la reconoce de un lado" />
     <MESSAGE value="casi terminado, faltan pruebas de condiciones sumas" />
-    <option name="LAST_COMMIT_MESSAGE" value="casi terminado, faltan pruebas de condiciones sumas" />
+    <MESSAGE value="falta verificar las funciones, y ver que se hace con el acceso de la lista" />
+    <option name="LAST_COMMIT_MESSAGE" value="falta verificar las funciones, y ver que se hace con el acceso de la lista" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="13" />
+      <option name="time" value="14" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/analisisSintactico.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="935">
@@ -784,27 +787,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generated/CParserVisitor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CScanner.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="102" column="0" lean-forward="true" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/antlr4/tree/Tree.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/antlr4/Lexer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
@@ -816,14 +798,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
           <caret line="1142" column="0" lean-forward="false" selection-start-line="1142" selection-start-column="0" selection-end-line="1142" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JavaScripts/recorridoClase.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -842,27 +816,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JavaScripts/tablaSimbolos.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="3" column="9" lean-forward="false" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Acontextual.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/require.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="3094">
           <caret line="201" column="0" lean-forward="false" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -870,22 +827,74 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/antlr4/tree/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generated/CParserVisitor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/antlr4/tree/Tree.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Acontextual.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="20" column="54" lean-forward="true" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CParser.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="98" column="36" lean-forward="false" selection-start-line="98" selection-start-column="26" selection-end-line="98" selection-end-column="36" />
+        <state relative-caret-position="175">
+          <caret line="70" column="47" lean-forward="false" selection-start-line="70" selection-start-column="42" selection-end-line="70" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CScanner.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="77" column="68" lean-forward="true" selection-start-line="77" selection-start-column="68" selection-end-line="77" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaScripts/recorridoClase.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="27" column="63" lean-forward="false" selection-start-line="27" selection-start-column="63" selection-end-line="27" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaScripts/tablaSimbolos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JavaScripts/VisitorAContextual.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="489" column="44" lean-forward="false" selection-start-line="489" selection-start-column="35" selection-end-line="489" selection-end-column="44" />
+        <state relative-caret-position="160">
+          <caret line="263" column="186" lean-forward="true" selection-start-line="263" selection-start-column="186" selection-end-line="263" selection-end-column="186" />
           <folding />
         </state>
       </provider>
