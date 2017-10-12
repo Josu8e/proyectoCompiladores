@@ -1,6 +1,7 @@
 var gramarVisitor = require('generated/CParserVisitor').CParserVisitor;
 var tablaSimbolos = require('JavaScripts/tablaSimbolos');
 var tabla;
+var padre;
 
 var textArea = document.getElementById('consola');
 var nivel = 0;
@@ -16,30 +17,15 @@ Acontextual.prototype.constructor = Acontextual;
 
 
 Acontextual.prototype.visitProgramDef = function(ctx) {
-    tabla.insertar('int','reservado',0,0,'variable');
-    tabla.insertar('char','reservado',0,0,'variable');
-    tabla.insertar('float','reservado',0,0,'variable');
-    tabla.insertar('bool','reservado',0,0,'variable');
-    tabla.insertar('string','reservado',0,0,'variable');
-    tabla.insertar('break','reservado',0,0,'variable');
-    tabla.insertar('class','reservado',0,0,'variable');
-    tabla.insertar('const','reservado',0,0,'variable');
-    tabla.insertar('else','reservado',0,0,'variable');
-    tabla.insertar('if','reservado',0,0,'variable');
-    tabla.insertar('new','reservado',0,0,'variable');
-    tabla.insertar('read','reservado',0,0,'variable');
-    tabla.insertar('return','reservado',0,0,'variable');
-    tabla.insertar('void','reservado',0,0,'variable');
-    tabla.insertar('while','reservado',0,0,'variable');
-    tabla.insertar('write','reservado',0,0,'variable');
-    //fixme: preguntar por la cantidad de parametros
+
+
     tabla.insertar('ord','reservado',0,0,'metodo');
     tabla.insertar('chr','reservado',0,0,'metodo');
     tabla.insertar('len','reservado',0,0,'metodo');
 
     this.visitChildren(ctx);
 
-    var temp = tabla.buscar("main");
+    var temp = tabla.buscar("Main");
     if (temp == null){
         textArea.innerHTML += "\n Error no existe metodo main";
     }
@@ -62,6 +48,12 @@ Acontextual.prototype.visitDeclaracionVariable = function(ctx) {
 };
 
 
+Acontextual.prototype.visitClase = function (ctx) {
+    padre = ctx.IDENTIFIER().getSymbol().text;
+    this.visitChildren(ctx);
+    padre = null;
+    return null;
+}
 
 
 // Visit a parse tree produced by CParser#constante.
@@ -73,7 +65,8 @@ Acontextual.prototype.visitConstante = function(ctx) {
         tabla.insertar(nombre, tipo, 0, nivel, 'constante');
         var valor = this.visit(ctx.numStr());
         //fixme: reparar xq es tabla.tabla no se esta accediendo bien
-        tabla[tabla.length-1].valor = valor;
+        var temp = tabla.buscar(nombre);
+        temp.valor = valor;
     }
     else{
         textArea.innerHTML += "\n Error en linea "+ ctx.IDENTIFIER().getSymbol().line +"  columna "+ ctx.IDENTIFIER().getSymbol().column + " variable "+ nombre+" ya definida";
@@ -98,23 +91,25 @@ Acontextual.prototype.visitChar = function(ctx) {
 
 // Visit a parse tree produced by CParser#variable.
 Acontextual.prototype.visitVariable = function(ctx) {
-    var tipo = this.visit(ctx.type());
-    var nombre = ctx.IDENTIFIER(0).getSymbol().text;
-    var temp  = tabla.buscar(nombre);
-    if (temp == null) {
-        tabla.insertar(nombre, tipo, 0, nivel, 'variable');
-    }
-    else{
-        textArea.innerHTML += "\n Error en linea "+ ctx.IDENTIFIER().getSymbol().line +"  columna "+ ctx.IDENTIFIER().getSymbol().column + " variable "+ nombre+" ya definida";
-    }
-    for (i=1;i<=ctx.IDENTIFIER().length-1;i++) {
-        nombre=ctx.IDENTIFIER(i).getSymbol().text;
-        temp = tabla.buscar(nombre);
+    if (padre == null) {
+        var tipo = this.visit(ctx.type());
+        var nombre = ctx.IDENTIFIER(0).getSymbol().text;
+        var temp = tabla.buscar(nombre);
         if (temp == null) {
             tabla.insertar(nombre, tipo, 0, nivel, 'variable');
         }
-        else{
-            textArea.innerHTML += "\n Error en linea "+ ctx.IDENTIFIER(i).getSymbol().line +"  columna "+ ctx.IDENTIFIER(i).getSymbol().column + " variable "+ nombre+" ya definida";
+        else {
+            textArea.innerHTML += "\n Error en linea " + ctx.IDENTIFIER(0).getSymbol().line + "  columna " + ctx.IDENTIFIER(0).getSymbol().column + " variable " + nombre + " ya definida";
+        }
+        for (i = 1; i <= ctx.IDENTIFIER().length - 1; i++) {
+            nombre = ctx.IDENTIFIER(i).getSymbol().text;
+            temp = tabla.buscar(nombre);
+            if (temp == null) {
+                tabla.insertar(nombre, tipo, 0, nivel, 'variable');
+            }
+            else {
+                textArea.innerHTML += "\n Error en linea " + ctx.IDENTIFIER(i).getSymbol().line + "  columna " + ctx.IDENTIFIER(i).getSymbol().column + " variable " + nombre + " ya definida";
+            }
         }
     }
 
@@ -257,35 +252,28 @@ Acontextual.prototype.visitIdT = function(ctx) {
 
 // Visit a parse tree produced by CParser#desigClassdef.
 Acontextual.prototype.visitDesigClassdef = function(ctx) {
-    var temp = tabla.buscar(ctx.IDENTIFIER().getSymbol().text);
-    if(temp == null){
-        temp = tabla.buscarClase(ctx.IDENTIFIER().getSymbol().text);
-        if (temp == null){
-            textArea.innerHTML += "\n Error en linea "+ ctx.IDENTIFIER().getSymbol().line +"  columna "+ ctx.IDENTIFIER().getSymbol().column +" "+ ctx.IDENTIFIER().getSymbol().text+" no definida";
-        }
-        else{
-            if(ctx.asigClass(0)!= null) {
-                var nombre = this.visit(ctx.asigClass(0));
-                var temp = tabla.buscarAtributos(ctx.IDENTIFIER().getSymbol().text, nombre);
-                var type = this.visit(ctx.asignation());
-
-                if (temp.tipo != type) {
-                    textArea.innerHTML += "\n Error en linea " + ctx.IDENTIFIER().getSymbol().line + " columna " + ctx.IDENTIFIER().getSymbol().column + " no se puede asignar " + type + " en una variable de tipo " + temp.tipo;
-                }
-                else if (temp.nivel != nivel) {
-                    textArea.innerHTML += "\n Error en linea " + ctx.IDENTIFIER().getSymbol().line + " columna " + ctx.IDENTIFIER().getSymbol().column + " variable no definida en este alcance";
-                }
-            }
-
-        }
-
-    }
-    else{
+    var temp1 = tabla.buscar(ctx.IDENTIFIER().getSymbol().text);
+    if(ctx.asigClass(0)!= null) {
+        var nombre = this.visit(ctx.asigClass(0));
+        var temp = tabla.buscarAtributos(temp1.tipo, nombre);
         var type = this.visit(ctx.asignation());
+
         if (temp.tipo != type) {
             textArea.innerHTML += "\n Error en linea " + ctx.IDENTIFIER().getSymbol().line + " columna " + ctx.IDENTIFIER().getSymbol().column + " no se puede asignar " + type + " en una variable de tipo " + temp.tipo;
         }
         else if (temp.nivel >= nivel) {
+            textArea.innerHTML += "\n Error en linea " + ctx.IDENTIFIER().getSymbol().line + " columna " + ctx.IDENTIFIER().getSymbol().column + " variable no definida en este alcance";
+        }
+    }
+    else if(temp1 == null){
+        textArea.innerHTML += "\n Error en linea "+ ctx.IDENTIFIER().getSymbol().line +"  columna "+ ctx.IDENTIFIER().getSymbol().column +" "+ ctx.IDENTIFIER().getSymbol().text+" no definida";
+    }
+    else{
+        var type = this.visit(ctx.asignation());
+        if (temp1.tipo != type) {
+            textArea.innerHTML += "\n Error en linea " + ctx.IDENTIFIER().getSymbol().line + " columna " + ctx.IDENTIFIER().getSymbol().column + " no se puede asignar " + type + " en una variable de tipo " + temp.tipo;
+        }
+        else if (temp1.nivel > nivel) {
             textArea.innerHTML += "\n Error en linea " + ctx.IDENTIFIER().getSymbol().line + " columna " + ctx.IDENTIFIER().getSymbol().column + " variable no definida en este alcance";
         }
 
@@ -403,14 +391,14 @@ Acontextual.prototype.visitLista = function(ctx) {
 // Visit a parse tree produced by CParser#menosmenos.
 Acontextual.prototype.visitMenosmenos = function(ctx) {
     this.visitChildren(ctx);
-    return null;
+    return 'int';
 };
 
 
 // Visit a parse tree produced by CParser#masmas.
 Acontextual.prototype.visitMasmas = function(ctx) {
     this.visitChildren(ctx);
-    return null;
+    return 'int';
 };
 
 
@@ -530,6 +518,11 @@ Acontextual.prototype.visitFactorBool = function(ctx) {
 
 // Visit a parse tree produced by CParser#factorNuevo.
 Acontextual.prototype.visitFactorNuevo = function(ctx) {
+    var nombre = ctx.IDENTIFIER().getSymbol().text;
+    temp = tabla.buscarClase(nombre);
+    if (temp != null){
+        return temp.nombre;
+    }
     return 'undefined';
 };
 

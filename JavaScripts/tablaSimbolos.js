@@ -7,13 +7,13 @@ function tablaSimbolos() {
     return this;
 }
 
-function clase(nombre) {
+function Clase(nombre) {
     this.nombre = nombre;
     this.tablaAtributos = [];
 }
 
 tablaSimbolos.prototype.insertarClase = function (nombre) {
-    var clase = new clase(nombre);
+    var clase = new Clase(nombre);
     tablaClase.push(clase);
 };
 
@@ -79,6 +79,13 @@ tablaSimbolos.prototype.buscar = function (nombre) {
 tablaSimbolos.prototype.imprimir=function () {
     tabla.forEach(function (x) {
             console.log(x);
+    });
+
+};
+
+tablaSimbolos.prototype.imprimirClases=function () {
+    tablaClase.forEach(function (x) {
+        console.log(x);
     });
 
 };
