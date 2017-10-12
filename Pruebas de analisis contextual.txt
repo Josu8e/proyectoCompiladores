@@ -1,0 +1,56 @@
+//---Metodo main
+//---Repeticion de variables
+//---Verificacion de tipo
+//---Repeticion de clases
+//---Repeticion de metodos
+//---Verificacion de operadores racionales
+//---Verificacion de tipo con operadores aritmeticos
+
+//---Codigo de prueba
+class program 
+int x;
+const float a = 20;
+
+class casa{
+ string nombre;
+ string nombre;
+}
+
+class casa{
+}
+
+{
+    void metodo(int g) 
+    casa m;
+    {
+        m = new casa;
+        m.casa = "my sweet home";
+        m.nombre = "my sweet home";
+        m.nombre = 1;
+    }
+    
+    void metodo(int y){
+        y = 2 + "a";
+        y = 2 * 'h';
+        if (y == "a"){
+            y = 'h';
+        }
+    }
+    
+    void metodo(string j, int l){
+    	return "hola";
+    }
+}
+
+//---Lista de errores
+ Error en linea 7 columna 8 variable nombre ya definida
+ Error en linea 10 columna: 6 clase casa ya definida
+ Error en linea 3  columna 12 constante solo acepta INTEGER o String
+ Error en linea 18 columna 8 variable no indentificada en la clase
+ Error en linea 20 columna 8 no se puede asignar int en una variable de tipo string
+ Error en linea 23  columna 9 funcion metodo ya definida con la misma cantidad de parametros
+ Error en linea: 24 columna 14 no se puede realizar la operacion
+ Error en linea: 25 columna 14 no se puede realizar la operacion
+ Error en linea 26 columna 14 condicion no booleana
+ Error en linea 27 columna 12 no se puede asignar char en una variable de tipo int
+ Error no existe metodo main
