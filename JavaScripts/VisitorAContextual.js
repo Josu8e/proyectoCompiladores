@@ -22,7 +22,7 @@ Acontextual.prototype.visitProgramDef = function(ctx) {
 
     tabla.insertar('ord','reservado',0,0,'metodo');
     tabla.insertar('chr','reservado',0,0,'metodo');
-    tabla.insertar('len','reservado',0,0,'metodo');
+    tabla.insertar('len','int',0,0,'metodo');
 
     this.visitChildren(ctx);
 
@@ -168,7 +168,7 @@ Acontextual.prototype.visitMetodo = function(ctx) {
 
 // Visit a parse tree produced by CParser#tipoDecla.
 Acontextual.prototype.visitTipoDecla = function(ctx) {
-    var tipo=this.visitChildren(ctx.type());
+    var tipo=this.visit(ctx.type());
     return tipo;
 };
 
@@ -212,30 +212,35 @@ Acontextual.prototype.visitDefVarMul = function(ctx) {
 
 // Visit a parse tree produced by CParser#intT.
 Acontextual.prototype.visitIntT = function(ctx) {
+    console.log(ctx.text);
     return 'int';
 };
 
 
 // Visit a parse tree produced by CParser#charT.
 Acontextual.prototype.visitCharT = function(ctx) {
+    console.log(ctx.text);
     return 'char';
 };
 
 
 // Visit a parse tree produced by CParser#floatT.
 Acontextual.prototype.visitFloatT = function(ctx) {
+    console.log(ctx.text);
     return 'float';
 };
 
 
 // Visit a parse tree produced by CParser#boolT.
 Acontextual.prototype.visitBoolT = function(ctx) {
+    console.log(ctx.text);
     return 'bool';
 };
 
 
 // Visit a parse tree produced by CParser#stringT.
 Acontextual.prototype.visitStringT = function(ctx) {
+    console.log(ctx.text);
     return 'string';
 };
 
@@ -243,6 +248,7 @@ Acontextual.prototype.visitStringT = function(ctx) {
 // Visit a parse tree produced by CParser#idT.
 Acontextual.prototype.visitIdT = function(ctx) {
     var temp = tabla.buscarClase(ctx.IDENTIFIER().getSymbol().text);
+    console.log(ctx.text);
     if (temp == null){
         textArea.innerHTML += textArea.innerHTML += "\n Error en linea "+ ctx.IDENTIFIER().getSymbol().line +"  columna "+ ctx.IDENTIFIER().getSymbol().column + " tipo no definido";
         return 'undefined';
@@ -542,13 +548,13 @@ Acontextual.prototype.visitFactorExpresion = function(ctx) {
 
 // Visit a parse tree produced by CParser#verdad.
 Acontextual.prototype.visitVerdad = function(ctx) {
-    return 'true';
+    return 'bool';
 };
 
 
 // Visit a parse tree produced by CParser#falso.
 Acontextual.prototype.visitFalso = function(ctx) {
-    return 'false';
+    return 'bool';
 };
 
 
