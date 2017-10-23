@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c482b11c-ad74-4d7e-8fc0-5b254f22ee0e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Interprete.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/JavaScripts/almacenVariables.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/JavaScripts/visitorInterprete.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Interprete.js" afterPath="$PROJECT_DIR$/Interprete.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JavaScripts/almacenVariables.js" afterPath="$PROJECT_DIR$/JavaScripts/almacenVariables.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JavaScripts/visitorInterprete.js" afterPath="$PROJECT_DIR$/JavaScripts/visitorInterprete.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,31 +20,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Interprete.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Interprete.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Interprete.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="47" lean-forward="true" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
+            <state relative-caret-position="0">
+              <caret line="0" column="20" lean-forward="true" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="visitorInterprete.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="visitorInterprete.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/JavaScripts/visitorInterprete.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VisitorAContextual.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JavaScripts/VisitorAContextual.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+            <state relative-caret-position="274">
+              <caret line="359" column="22" lean-forward="false" selection-start-line="359" selection-start-column="22" selection-end-line="359" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -52,8 +43,18 @@
       <file leaf-file-name="almacenVariables.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JavaScripts/almacenVariables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="38" column="20" lean-forward="true" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+            <state relative-caret-position="220">
+              <caret line="33" column="1" lean-forward="false" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CParser.g4" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CParser.g4">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="316">
+              <caret line="74" column="127" lean-forward="false" selection-start-line="74" selection-start-column="118" selection-end-line="74" selection-end-column="127" />
               <folding />
             </state>
           </provider>
@@ -70,20 +71,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>console.log</find>
-      <find>`</find>
-      <find>asignarCl</find>
-      <find>Acon</find>
-      <find>visitbloque</find>
-      <find>desigClas</find>
-      <find>visitBloque</find>
-      <find>catch</find>
-      <find>no se puede asig</find>
-      <find>block</find>
-      <find>&quot;Error en la linea</find>
-      <find>asigClas</find>
-      <find>no definida</find>
-      <find>igual</find>
       <find>ctx.relop</find>
       <find>ctx.</find>
       <find>ctx.mulop</find>
@@ -94,12 +81,26 @@
       <find>factorEx</find>
       <find>return 'undefined'</find>
       <find>type</find>
-      <find>intT</find>
       <find>tipoDe</find>
       <find>tipoDecla</find>
       <find>INT</find>
       <find>id</find>
       <find>tablaSimbolos</find>
+      <find>CParserVisitor.</find>
+      <find>ctx.typ</find>
+      <find>intT</find>
+      <find>parseIn</find>
+      <find>variable</find>
+      <find>cons</find>
+      <find>inser</find>
+      <find>asign</find>
+      <find>ASIGN</find>
+      <find>for</find>
+      <find>mod</find>
+      <find>class</find>
+      <find>mas</find>
+      <find>asi</find>
+      <find>asignador</find>
     </findStrings>
     <replaceStrings>
       <replace>this.visit</replace>
@@ -120,6 +121,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Interprete.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Acontextual.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/JavaScripts/VisitorAContextual.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/JavaScripts/visitorInterprete.js" root0="SKIP_INSPECTION" />
@@ -139,7 +141,6 @@
         <option value="$PROJECT_DIR$/style.css" />
         <option value="$PROJECT_DIR$/generated/CParserVisitor.js" />
         <option value="$PROJECT_DIR$/js.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/JavaScripts/prityPrint.js" />
         <option value="$PROJECT_DIR$/analisisSintactico.js" />
         <option value="$PROJECT_DIR$/CParser.g4" />
@@ -147,8 +148,9 @@
         <option value="$PROJECT_DIR$/JavaScripts/VisitorAContextual.js" />
         <option value="$PROJECT_DIR$/Acontextual.js" />
         <option value="$PROJECT_DIR$/JavaScripts/tablaSimbolos.js" />
-        <option value="$PROJECT_DIR$/JavaScripts/almacenVariables.js" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/Interprete.js" />
+        <option value="$PROJECT_DIR$/JavaScripts/almacenVariables.js" />
         <option value="$PROJECT_DIR$/JavaScripts/visitorInterprete.js" />
       </list>
     </option>
@@ -185,6 +187,11 @@
             <path>
               <item name="Nueva carpeta" type="b2602c69:ProjectViewProjectNode" />
               <item name="Nueva carpeta" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Nueva carpeta" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Nueva carpeta" type="462c0819:PsiDirectoryNode" />
+              <item name="generated" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Nueva carpeta" type="b2602c69:ProjectViewProjectNode" />
@@ -287,7 +294,7 @@
       <workItem from="1507580902506" duration="1673000" />
       <workItem from="1507835848762" duration="1406000" />
       <workItem from="1508443987324" duration="5359000" />
-      <workItem from="1508790729347" duration="1294000" />
+      <workItem from="1508790729347" duration="9542000" />
     </task>
     <task id="LOCAL-00001" summary="cambios en el pretty print">
       <created>1504743221908</created>
@@ -401,11 +408,18 @@
       <option name="project" value="LOCAL" />
       <updated>1507759434159</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Se agregaron archivos necesarios para comenzar con el interprete">
+      <created>1508792065803</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1508792065803</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="162177000" />
+    <option name="totallyTimeSpent" value="170425000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -533,7 +547,8 @@
     <MESSAGE value="fallas en la tabla no la reconoce de un lado" />
     <MESSAGE value="casi terminado, faltan pruebas de condiciones sumas" />
     <MESSAGE value="Correciones ortograficas y de lineas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correciones ortograficas y de lineas" />
+    <MESSAGE value="Se agregaron archivos necesarios para comenzar con el interprete" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se agregaron archivos necesarios para comenzar con el interprete" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -732,13 +747,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generated/CParserVisitor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/antlr4/tree/Tree.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
@@ -767,40 +775,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="54" column="34" lean-forward="false" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/require.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="201" column="0" lean-forward="false" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analisisSintactico.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CScanner.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1717">
-          <caret line="101" column="20" lean-forward="false" selection-start-line="101" selection-start-column="20" selection-end-line="101" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CParser.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="108" lean-forward="false" selection-start-line="37" selection-start-column="108" selection-end-line="37" selection-end-column="108" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -820,42 +798,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JavaScripts/almacenVariables.js">
+    <entry file="file://$PROJECT_DIR$/analisisSintactico.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="38" column="20" lean-forward="true" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+        <state relative-caret-position="187">
+          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generated/CParserVisitor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="390" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="390" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Acontextual.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="24" />
+        <state relative-caret-position="294">
+          <caret line="32" column="32" lean-forward="false" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="37" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JavaScripts/VisitorAContextual.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+        <state relative-caret-position="255">
+          <caret line="15" column="48" lean-forward="true" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JavaScripts/visitorInterprete.js">
+    <entry file="file://$PROJECT_DIR$/CScanner.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+        <state relative-caret-position="243">
+          <caret line="35" column="5" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Interprete.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="47" lean-forward="true" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
+        <state relative-caret-position="0">
+          <caret line="0" column="20" lean-forward="true" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CParser.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="74" column="127" lean-forward="false" selection-start-line="74" selection-start-column="118" selection-end-line="74" selection-end-column="127" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaScripts/almacenVariables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="33" column="1" lean-forward="false" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavaScripts/visitorInterprete.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="359" column="22" lean-forward="false" selection-start-line="359" selection-start-column="22" selection-end-line="359" selection-end-column="22" />
           <folding />
         </state>
       </provider>

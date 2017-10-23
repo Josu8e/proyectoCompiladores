@@ -6,16 +6,17 @@ function almacenVariables() {
     return this;
 }
 
-function Id(nombre,tipo,nivel) {
+function Id(nombre,tipo,nivel,valor) {
     this.nombre = nombre;
     this.tipo = tipo;
-    this.valor = null;
     this.nivel = nivel;
+    this.valor = valor;
+
 }
 
-almacenVariables.prototype.insertar = function (nombre,tipo,nivel) {
+almacenVariables.prototype.insertar = function (nombre,tipo,nivel,valor) {
 
-    var id = new Id(nombre,tipo,nivel);
+    var id = new Id(nombre,tipo,nivel,valor);
     tabla.push(id);
 };
 
@@ -31,13 +32,9 @@ almacenVariables.prototype.buscar = function (nombre) {
 
 
 almacenVariables.prototype.modificar = function (nombre, x) {
-    temp = this.buscar(nombre);
-    if (temp == null){
-        return false;
-    }
-    else{
-        return true;
-    }
+    var temp = this.buscar(nombre);
+    temp.valor = x;
+
 
 }
 

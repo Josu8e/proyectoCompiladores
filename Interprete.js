@@ -2,14 +2,9 @@ var antlr4 = require('antlr4/index');
 var CParser = require('generated/CParser');
 var CScanner = require('generated/CScanner');
 var interprete = require('JavaScripts/visitorInterprete');
-var almacen = require('JavaScripts/almacenVariables');
-var tablaAlmacen;
+
 
 function Interprete() {
-
-
-    tabla = new almacen.almacenVariables();
-    console.log(tablaAlmacen);
 
     editor = $('textarea').data('ace-editor');
 
@@ -30,6 +25,3 @@ function Interprete() {
 
 
 }
-
-
-exports = {Tabla:tablaAlmacen};
