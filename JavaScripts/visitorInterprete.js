@@ -1,13 +1,21 @@
 var gramarVisitor = require('generated/CParserVisitor').CParserVisitor;
-var almacen = require('JavaScripts/almacenVariables');
-var tabla;
+var almacenVariables = require('JavaScripts/almacenVariables');
+var almacenMetodos = require('JavaScripts/almacenMetodos');
+var almacenClases = require('JavaScripts/almacenClases');
+
+var tablaVariables;
+var tablaMetodos;
+var tablaClases;
 
 var nivel = 0;
 var variabletrabajo;
+var padre = null;
 
 function visitorInterprete() {
     gramarVisitor.call(this);
-    tabla = new almacen.almacenVariables();
+    tablaVariables = new almacenVariables.almacenVariables();
+    tablaMetodos =  new almacenMetodos.almacenMetodos();
+    tablaClases = new almacenClases.almacenClases();
     return this;
 }
 
@@ -19,7 +27,9 @@ visitorInterprete.prototype.constructor = visitorInterprete;
 //your code here :)
 visitorInterprete.prototype.visitProgramDef = function(ctx) {
     this.visitChildren(ctx);
-    tabla.imprimir();
+    tablaVariables.imprimir();
+    tablaClases.imprimirClases();
+    tablaMetodos.imprimir();
     return null;
 };
 
@@ -51,7 +61,7 @@ visitorInterprete.prototype.visitConstante = function(ctx) {
     var nombre = ctx.IDENTIFIER().getSymbol().text;
     var valor = this.visit(ctx.numStr());
 
-    tabla.insertar(nombre,type,nivel,valor);
+    tablaVariables.insertar(nombre,type,nivel,valor);
 
 
     return null;
@@ -77,25 +87,44 @@ visitorInterprete.prototype.visitChar = function(ctx) {
 visitorInterprete.prototype.visitVariable = function(ctx) {
     var tipo = this.visit(ctx.type());
     var nombre = ctx.IDENTIFIER(0).getSymbol().text;
-    tabla.insertar(nombre,tipo,nivel,null);
+    if (padre == null) {
+        tablaVariables.insertar(nombre, tipo, nivel, null);
+    }
+    else{
+        tablaClases.insertarAtributosClase(padre,nombre,tipo,nivel);
+    }
     for (var i = 1; i<ctx.IDENTIFIER().length;i++){
         nombre = ctx.IDENTIFIER(i).getSymbol().text;
-        tabla.insertar(nombre,tipo,nivel,null);
+        if (padre == null) {
+            tablaVariables.insertar(nombre, tipo, nivel, null);
+        }
+        else{
+            tablaClases.insertarAtributosClase(padre,nombre,tipo,nivel);
+        }
     }
+    return null;
 };
 
 
 // Visit a parse tree produced by CParser#clase.
-//toDO: not done
+
 visitorInterprete.prototype.visitClase = function(ctx) {
-    return this.visitChildren(ctx);
+    padre = ctx.IDENTIFIER().getSymbol().text;
+    tablaClases.insertarClase(padre);
+    for (var i = 0 ; i<ctx.varDecl().length; i++){
+        this.visit(ctx.varDecl(i));
+    }
+    padre = null;
+    return null;
 };
 
 
 // Visit a parse tree produced by CParser#metodo.
-//toDo: not done
+
 visitorInterprete.prototype.visitMetodo = function(ctx) {
-    return this.visitChildren(ctx);
+    var tipo = this.visit(ctx.tipoMet());
+    var nombre = ctx.IDENTIFIER().getSymbol().text;
+    tablaMetodos.insertar(nombre,tipo,ctx);
 };
 
 
@@ -151,15 +180,8 @@ visitorInterprete.prototype.visitStringT = function(ctx) {
 // Visit a parse tree produced by CParser#idT.
 //fixme: falta definir como vamos a manejar las clases
 visitorInterprete.prototype.visitIdT = function(ctx) {
-    /*var temp = tabla.buscarClase(ctx.IDENTIFIER().getSymbol().text);
-    console.log(ctx.text);
-    if (temp == null){
-        textArea.innerHTML += textArea.innerHTML += "\n Error en linea "+ ctx.IDENTIFIER().getSymbol().line +"  columna "+ ctx.IDENTIFIER().getSymbol().column + " tipo no definido";
-        return 'undefined';
-    }
-    else {
-        return temp.nombre;
-    }*/
+    var temp = tablaClases.buscarClase(ctx.IDENTIFIER().getSymbol().text);
+    return temp.nombre;
 };
 
 // Visit a parse tree produced by CParser#desigClassdef.
@@ -173,7 +195,7 @@ visitorInterprete.prototype.visitDesigClassdef = function(ctx) {
 
     this.visit(ctx.asignation());
 
-    //tabla.modificar(nombre,valor);
+    //tablaVariables.modificar(nombre,valor);
     variabletrabajo = null;
 
 
@@ -260,7 +282,7 @@ visitorInterprete.prototype.visitLista = function(ctx) {
 
 // Visit a parse tree produced by CParser#menosmenos.
 visitorInterprete.prototype.visitMenosmenos = function(ctx) {
-    var temp = tabla.buscar(variabletrabajo);
+    var temp = tablaVariables.buscar(variabletrabajo);
     if (temp.valor == null){
         temp.valor = 0;
     }
@@ -271,7 +293,7 @@ visitorInterprete.prototype.visitMenosmenos = function(ctx) {
 
 // Visit a parse tree produced by CParser#masmas.
 visitorInterprete.prototype.visitMasmas = function(ctx) {
-    var temp = tabla.buscar(variabletrabajo);
+    var temp = tablaVariables.buscar(variabletrabajo);
     if (temp.valor == null){
         temp.valor = 0;
     }
@@ -328,7 +350,7 @@ visitorInterprete.prototype.visitExpresion = function(ctx) {
             dato = dato + dato2;
         }
     }
-    tabla.modificar(variabletrabajo,dato);
+    tablaVariables.modificar(variabletrabajo,dato);
     return null;
 };
 
@@ -356,7 +378,7 @@ visitorInterprete.prototype.visitTermino = function(ctx) {
 // Visit a parse tree produced by CParser#asignador.
 //fixme: not done
 visitorInterprete.prototype.visitAsignador = function(ctx) {
-    var temp=tabla.buscar(ctx.IDENTIFIER().getSymbol().text);
+    var temp=tablaVariables.buscar(ctx.IDENTIFIER().getSymbol().text);
     return temp.valor;
 };
 

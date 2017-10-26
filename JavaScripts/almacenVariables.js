@@ -11,7 +11,6 @@ function Id(nombre,tipo,nivel,valor) {
     this.tipo = tipo;
     this.nivel = nivel;
     this.valor = valor;
-
 }
 
 almacenVariables.prototype.insertar = function (nombre,tipo,nivel,valor) {
