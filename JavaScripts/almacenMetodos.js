@@ -6,16 +6,19 @@ function almacenMetodos() {
     return this;
 }
 
-function metodo(nombre,tipo,ctx) {
+
+
+function metodo(nombre,tipo,ctx,parametros) {
     this.nombre = nombre;
     this.tipo = tipo;
-    this.parametros = [];
+    this.parametros = parametros;
     this.contexto = ctx;
+    this.cPara = this.parametros.length;
 }
 
-almacenMetodos.prototype.insertar = function (nombre,tipo,ctx) {
+almacenMetodos.prototype.insertar = function (nombre,tipo,ctx,parametros) {
 
-    var id = new metodo(nombre,tipo,ctx);
+    var id = new metodo(nombre,tipo,ctx,parametros);
     tabla.push(id);
 };
 
