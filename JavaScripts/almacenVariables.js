@@ -32,9 +32,12 @@ almacenVariables.prototype.buscar = function (nombre) {
 
 almacenVariables.prototype.modificar = function (nombre, x) {
     var temp = this.buscar(nombre);
-    temp.valor = x;
-
-
+    if (temp!=null) {
+        temp.valor = x;
+        return "succesful";
+    }
+    else
+        return null;
 }
 
 almacenVariables.prototype.imprimir=function () {

@@ -4,7 +4,9 @@ var CScanner = require('generated/CScanner');
 var interprete = require('JavaScripts/visitorInterprete');
 var ejecucion = require('JavaScripts/ejecucionVisitor');
 var almacenMetodos = require('JavaScripts/almacenMetodos');
+var almacenVariables = require('JavaScripts/almacenVariables')
 var tablaMetodos;
+var tablaVariables;
 var temporal;
 
 
@@ -23,6 +25,7 @@ function Interprete() {
     parser.buildParseTrees = true;
 
     tablaMetodos =  new almacenMetodos.almacenMetodos();
+    tablaVariables = new almacenVariables.almacenVariables();
 
 
     var tree = parser.program();
@@ -76,12 +79,9 @@ function cargarFuncion() {
     for (var i=0;i<temp.contexto.varDecl().length;i++) {
         y.visit(temp.contexto.varDecl(i));
     }
+    var lista = temp.parametros;
     y.visit(temp.contexto.block());
-    for(var i=0;i<temp.parametros.length;i++){
-        if(i>=temp.cPara){
-            delete temp.parametros[i];
-        }
-    }
+    temp.parametros = lista;
     temporal = null;
 
 }

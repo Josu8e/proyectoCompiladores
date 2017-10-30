@@ -12,7 +12,7 @@ var padre = null;
 
 function visitorInterprete() {
     gramarVisitor.call(this);
-    tablaVariables = new almacenVariables.almacenVariables();
+    tablaVariables = global.tablaVariables;
     tablaMetodos = global.tablaMetodos;
     tablaClases = new almacenClases.almacenClases();
     return this;

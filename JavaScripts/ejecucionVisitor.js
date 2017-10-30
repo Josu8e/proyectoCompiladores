@@ -1,11 +1,22 @@
 var gramarVisitor = require('generated/CParserVisitor').CParserVisitor;
 var temporal;
+var tablaVariables;
 
 
 function ejecucionVisitor() {
     gramarVisitor.call(this);
     temporal = global.temporal;
+    tablaVariables = global.tablaVariables;
     return this;
+}
+
+function buscarInterno(nombre) {
+    for (var i = 0;i<temporal.parametros.length;i++){
+        if(temporal.parametros[i].nombre == nombre){
+            return temporal.parametros[i];
+        }
+    }
+    return null;
 }
 
 var variabletrabajo;
@@ -134,8 +145,15 @@ ejecucionVisitor.prototype.visitExpresion = function(ctx) {
             dato = dato + dato2;
         }
     }
-    tablaVariables.modificar(variabletrabajo,dato);
-    return null;
+    retorno=tablaVariables.modificar(variabletrabajo,dato);
+    if (retorno == null){
+        var temp = buscarInterno(variabletrabajo);
+        if (temp != null) {
+            temp.valor = dato;
+        }
+    }
+
+    return dato;
 };
 
 
@@ -162,7 +180,11 @@ ejecucionVisitor.prototype.visitTermino = function(ctx) {
 // Visit a parse tree produced by CParser#asignador.
 //fixme: not done
 ejecucionVisitor.prototype.visitAsignador = function(ctx) {
-    var temp=tablaVariables.buscar(ctx.IDENTIFIER().getSymbol().text);
+    var name = ctx.IDENTIFIER().getSymbol().text;
+    var temp=tablaVariables.buscar(name);
+    if (temp == null){
+        temp = buscarInterno(name);
+    }
     return temp.valor;
 };
 
@@ -234,5 +256,120 @@ ejecucionVisitor.prototype.visitDividir = function(ctx) {
 ejecucionVisitor.prototype.visitModular = function(ctx) {
     return '%';
 };
+
+ejecucionVisitor.prototype.visitIfelseDef = function (ctx) {
+    var condicion = this.visit(ctx.condition());
+    if (condicion == 1){
+        this.visit(ctx.statement(0));
+    }
+    else{
+        try{
+            this.visit(ctx.statement(1));
+        }
+        catch (e){};
+    }
+
+}
+
+ejecucionVisitor.prototype.visitCondicion = function (ctx) {
+    var condiciones = this.visitChildren(ctx);
+
+    if (1 in condiciones){
+        return 1;
+    }
+    return 2;
+}
+
+ejecucionVisitor.prototype.visitCTerm = function (ctx) {
+    var condiciones = this.visitChildren(ctx);
+    if (1 in condiciones){
+        return 2;
+    }
+    return 1;
+}
+
+ejecucionVisitor.prototype.visitCFact = function (ctx) {
+    var primeraExp = this.visit(ctx.expr(0));
+    var segundaExp = this.visit(ctx.expr(1));
+    var relop = this.visit(ctx.relop());
+
+    if (relop == '==') {
+        if (primeraExp == segundaExp) {
+            return 1;
+        }
+        else {
+            return 2;
+        }
+    }
+
+    if(relop == '!='){
+        if(primeraExp != segundaExp){
+            return 1;
+        }
+        else{
+            return 2;
+        }
+    }
+
+    if(relop == '>'){
+        if(primeraExp > segundaExp){
+            return 1;
+        }
+        else{
+            return 2;
+        }
+    }
+
+    if(relop == '>='){
+        if(primeraExp >= segundaExp){
+            return 1;
+        }
+        else{
+            return 2;
+        }
+    }
+
+    if(relop == '<'){
+        if(primeraExp < segundaExp){
+            return 1;
+        }
+        else{
+            return 2;
+        }
+    }
+
+    if(relop == '<='){
+        if(primeraExp <= segundaExp){
+            return 1;
+        }
+        else{
+            return 2;
+        }
+    }
+
+ejecucionVisitor.prototype.visitIgualIgual = function (ctx) {
+    return ctx.COMPARACION().getSymbol().text;
+}
+
+ejecucionVisitor.prototype.visitDifereteDe = function (ctx) {
+    return '!=';
+}
+
+ejecucionVisitor.prototype.visitMayorQue = function (ctx) {
+    return '>';
+}
+
+ejecucionVisitor.prototype.visitMayorIgualQue = function (ctx) {
+    return '>=';
+}
+
+ejecucionVisitor.prototype.visitMenorQue = function (ctx) {
+    return '<';
+}
+
+ejecucionVisitor.prototype.visitMenorIgualQue = function (ctx) {
+    return '<=';
+}
+}
 
 exports.ejecucionVisitor = ejecucionVisitor;
