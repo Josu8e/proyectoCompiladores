@@ -103,6 +103,9 @@ ejecucionVisitor.prototype.visitAsignacion = function(ctx) {
 // Visit a parse tree produced by CParser#menosmenos.
 ejecucionVisitor.prototype.visitMenosmenos = function(ctx) {
     var temp = tablaVariables.buscar(variabletrabajo);
+    if (temp == null){
+        temp = buscarInterno(variabletrabajo);
+    }
     if (temp.valor == null){
         temp.valor = 0;
     }
@@ -113,6 +116,9 @@ ejecucionVisitor.prototype.visitMenosmenos = function(ctx) {
 // Visit a parse tree produced by CParser#masmas.
 ejecucionVisitor.prototype.visitMasmas = function(ctx) {
     var temp = tablaVariables.buscar(variabletrabajo);
+    if (temp == null){
+        temp = buscarInterno(variabletrabajo);
+    }
     if (temp.valor == null){
         temp.valor = 0;
     }
@@ -271,19 +277,57 @@ ejecucionVisitor.prototype.visitIfelseDef = function (ctx) {
 
 }
 
-ejecucionVisitor.prototype.visitCondicion = function (ctx) {
-    var condiciones = this.visitChildren(ctx);
 
-    if (1 in condiciones){
-        return 1;
+ejecucionVisitor.prototype.visitForDef = function (ctx) {
+    //FOR PIZQ expr PUNTOCOMA (condition)? PUNTOCOMA (statement)? PDER statement
+
+
+    while (this.visit(ctx.condition()==1)){
+        this.visit(ctx.statement(1));
+        try {
+            this.visit(ctx.statement(0));
+        }
+        catch (e){}
+    }
+
+    
+}
+
+ejecucionVisitor.prototype.visitCondicion = function (ctx) {
+    var condiciones = [];
+    for (var i = 0;i<ctx.condTerm().length;i++) {
+        condiciones.push(this.visit(ctx.condTerm(i)))
+    }
+    if(condiciones.length != 1) {
+        for (var i = 0; i < condiciones.length; i++) {
+            if (condiciones[i] == 1)
+                return 1;
+        }
+    }
+    else{
+        if(condiciones[0] == 1){
+            return 1;
+        }
     }
     return 2;
 }
 
 ejecucionVisitor.prototype.visitCTerm = function (ctx) {
-    var condiciones = this.visitChildren(ctx);
-    if (1 in condiciones){
-        return 2;
+    var condiciones = []
+    for (var i = 0;i<ctx.condFact().length;i++) {
+        condiciones.push(this.visit(ctx.condFact(i)))
+    }
+
+    if(condiciones.length != 1) {
+        for (var i = 0; i < condiciones.length; i++) {
+            if (condiciones[i] == 2)
+                return 2;
+        }
+    }
+    else {
+        if(condiciones[0] == 2){
+            return 2;
+        }
     }
     return 1;
 }

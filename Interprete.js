@@ -54,25 +54,30 @@ function cargarFuncion() {
     var parametros = parametrosbrutos.split(',');
 
     var temp = tablaMetodos.buscar(nombre);
-    for (var i=0; i<parametros.length;i++){
-        if(temp.parametros[i].tipo == "int"){
-            parametros[i] = parseInt(parametros[i]);
-        }
-        else if(temp.parametros[i].tipo == "char"){
-            parametros[i] = parametros.charAt(0);
-        }
-        else if(temp.parametros[i].tipo == "bool"){
-            if(parametros[i]=='true'){
-                parametros[i]=true;
+    if (parametros[0]!="") {
+        for (var i = 0; i < parametros.length; i++) {
+            if (temp.parametros[i].tipo == "int") {
+                parametros[i] = parseInt(parametros[i]);
             }
-            else{
-                parametros[i]=false;
+            else if (temp.parametros[i].tipo == "char") {
+                parametros[i] = parametros.charAt(0);
             }
+            else if (temp.parametros[i].tipo == "bool") {
+                if (parametros[i] == 'true') {
+                    parametros[i] = true;
+                }
+                else {
+                    parametros[i] = false;
+                }
+            }
+            else if (temp.parametros[i].tipo == 'float') {
+                parametros[i] = parseFloat(parametros[i]);
+            }
+            temp.parametros[i].valor = parametros[i];
         }
-        else if(temp.parametros[i].tipo == 'float'){
-            parametros[i] = parseFloat(parametros[i]);
-        }
-        temp.parametros[i].valor =parametros[i];
+    }
+    else{
+        temp.parametros = [];
     }
     temporal = temp;
     var y = new ejecucion.ejecucionVisitor();
