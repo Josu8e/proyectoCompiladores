@@ -1,13 +1,27 @@
 var gramarVisitor = require('generated/CParserVisitor').CParserVisitor;
 var temporal;
 var tablaVariables;
+var breakVsitado;
+var tablaMetodos;
+var listaHistorial = [];
+var variabletrabajoLista = [];
 
 
 function ejecucionVisitor() {
     gramarVisitor.call(this);
     temporal = global.temporal;
     tablaVariables = global.tablaVariables;
+    tablaMetodos = global.tablaMetodos;
+    listaHistorial.push(temporal);
     return this;
+}
+
+function metodo(nombre,tipo,ctx,parametros) {
+    this.nombre = nombre;
+    this.tipo = tipo;
+    this.parametros = parametros;
+    this.contexto = ctx;
+    this.cPara = this.parametros.length;
 }
 
 function buscarInterno(nombre) {
@@ -85,13 +99,14 @@ ejecucionVisitor.prototype.visitDesigClassdef = function(ctx) {
     var nombre = ctx.IDENTIFIER().getSymbol().text;
 
     variabletrabajo = nombre;
+    variabletrabajoLista.push(nombre);
 
     //toDo: falta saber que hacer si viene "objeto.atributo" o "lista[algo]"
-    //code
 
-    this.visit(ctx.asignation());
-    variabletrabajo = null;
+    var algo = this.visit(ctx.asignation());
+    variabletrabajo = null
 
+    return null;
 };
 
 // Visit a parse tree produced by CParser#asignacion.
@@ -128,14 +143,26 @@ ejecucionVisitor.prototype.visitMasmas = function(ctx) {
 
 // Visit a parse tree produced by CParser#bloque.
 ejecucionVisitor.prototype.visitBloque = function(ctx) {
-    this.visitChildren(ctx);
-    return null;
+    var retorno;
+    var visita;
+    for(var i = 0; i<ctx.statement().length;i++){
+        visita = this.visit(ctx.statement(i))
+        if( visita != null ){
+            retorno = visita;
+        }
+    }
+    return visita;
 };
 
 // Visit a parse tree produced by CParser#parteLista.
 ejecucionVisitor.prototype.visitParteLista = function(ctx) {
-    this.visitChildren(ctx);
-    return null;
+    var lista = [];
+
+    for (var i = 0; i<ctx.expr().length;i++){
+        lista.push(this.visit(ctx.expr(i)));
+    }
+
+    return lista;
 };
 
 // Visit a parse tree produced by CParser#expresion.
@@ -191,6 +218,31 @@ ejecucionVisitor.prototype.visitAsignador = function(ctx) {
     if (temp == null){
         temp = buscarInterno(name);
     }
+    if(temp == null){
+        temporal = tablaMetodos.buscar(name);
+        listaHistorial.push(temporal);
+        temp = temporal;
+        var lista=this.visit(ctx.actPars());
+        for(var i=0; i<temp.parametros.length; i++){
+            temp.parametros[i].valor = lista[i];
+        }
+
+        for (var i=0;i<temp.contexto.varDecl().length;i++) {
+            this.visit(temp.contexto.varDecl(i));
+        }
+
+        var algo = this.visit(temp.contexto.block());
+
+        listaHistorial.pop();
+        variabletrabajoLista.pop();
+        temporal = listaHistorial[listaHistorial.length-1];
+        variabletrabajo = variabletrabajoLista[variabletrabajoLista.length-1];
+
+        return algo;
+
+    }
+
+
     return temp.valor;
 };
 
@@ -274,24 +326,55 @@ ejecucionVisitor.prototype.visitIfelseDef = function (ctx) {
         }
         catch (e){};
     }
-
+    return null;
 }
 
 
 ejecucionVisitor.prototype.visitForDef = function (ctx) {
-    //FOR PIZQ expr PUNTOCOMA (condition)? PUNTOCOMA (statement)? PDER statement
 
-
-    while (this.visit(ctx.condition()==1)){
+    while (this.visit(ctx.condition())==1){
         this.visit(ctx.statement(1));
+        if (breakVsitado){
+            breakVsitado = false;
+            break
+        }
         try {
             this.visit(ctx.statement(0));
         }
         catch (e){}
     }
-
-    
+    return null;
 }
+
+ejecucionVisitor.prototype.visitWhileDef = function (ctx) {
+    while(this.visit(ctx.condition())==1){
+        var retorno = this.visit(ctx.statement());
+        if (breakVsitado){
+            breakVsitado = false;
+            break
+        }
+    }
+}
+//todo: hasta que hagamos las listas podemos hace este
+ejecucionVisitor.prototype.visitForeachDef = function (ctx) {
+    return null;
+}
+
+ejecucionVisitor.prototype.visitLista = function (ctx) {
+    var temp =  tablaMetodos.buscar(variabletrabajo);
+    var param = this.visit(ctx.actPars());
+
+    temp.parametros = param;
+    var retorno = this.visit(temp.contexto);
+    return retorno;
+}
+
+ejecucionVisitor.prototype.visitBreak = function (ctx) {
+    breakVsitado = true;
+    return null;
+}
+
+
 
 ejecucionVisitor.prototype.visitCondicion = function (ctx) {
     var condiciones = [];
@@ -346,50 +429,51 @@ ejecucionVisitor.prototype.visitCFact = function (ctx) {
         }
     }
 
-    if(relop == '!='){
-        if(primeraExp != segundaExp){
+    if (relop == '!=') {
+        if (primeraExp != segundaExp) {
             return 1;
         }
-        else{
+        else {
             return 2;
         }
     }
 
-    if(relop == '>'){
-        if(primeraExp > segundaExp){
+    if (relop == '>') {
+        if (primeraExp > segundaExp) {
             return 1;
         }
-        else{
+        else {
             return 2;
         }
     }
 
-    if(relop == '>='){
-        if(primeraExp >= segundaExp){
+    if (relop == '>=') {
+        if (primeraExp >= segundaExp) {
             return 1;
         }
-        else{
+        else {
             return 2;
         }
     }
 
-    if(relop == '<'){
-        if(primeraExp < segundaExp){
+    if (relop == '<') {
+        if (primeraExp < segundaExp) {
             return 1;
         }
-        else{
+        else {
             return 2;
         }
     }
 
-    if(relop == '<='){
-        if(primeraExp <= segundaExp){
+    if (relop == '<=') {
+        if (primeraExp <= segundaExp) {
             return 1;
         }
-        else{
+        else {
             return 2;
         }
     }
+}
 
 ejecucionVisitor.prototype.visitIgualIgual = function (ctx) {
     return ctx.COMPARACION().getSymbol().text;
@@ -414,6 +498,9 @@ ejecucionVisitor.prototype.visitMenorQue = function (ctx) {
 ejecucionVisitor.prototype.visitMenorIgualQue = function (ctx) {
     return '<=';
 }
+
+ejecucionVisitor.prototype.visitReturnDef = function (ctx) {
+    return this.visit(ctx.expr());
 }
 
 exports.ejecucionVisitor = ejecucionVisitor;
