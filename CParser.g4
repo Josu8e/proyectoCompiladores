@@ -19,7 +19,7 @@ numStr                  : NUMBER                                                
                         ;
 
 
-varDecl	                : type IDENTIFIER (COMA IDENTIFIER)* PUNTOCOMA                                  #variable
+varDecl	                : type  (PCIZQ PCDER)? IDENTIFIER (COMA IDENTIFIER)* PUNTOCOMA                                  #variable
                         ;
 classDecl               : CLASS IDENTIFIER CORCHETEIZQ (varDecl)* CORCHETEDER                           #clase
                         ;

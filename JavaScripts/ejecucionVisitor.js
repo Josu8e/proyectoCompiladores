@@ -5,11 +5,13 @@ var breakVsitado;
 var tablaMetodos;
 var listaHistorial = [];
 var variabletrabajoLista = [];
+var tablaClases;
 
 
 function ejecucionVisitor() {
     gramarVisitor.call(this);
     temporal = global.temporal;
+    tablaClases = global.tablaClases;
     tablaVariables = global.tablaVariables;
     tablaMetodos = global.tablaMetodos;
     listaHistorial.push(temporal);
@@ -234,7 +236,11 @@ ejecucionVisitor.prototype.visitAsignador = function(ctx) {
         var algo = this.visit(temp.contexto.block());
 
         listaHistorial.pop();
-        variabletrabajoLista.pop();
+        var i = 0;
+        while(i<temporal.parametros.length) {
+            variabletrabajoLista.pop();
+            i++;
+        }
         temporal = listaHistorial[listaHistorial.length-1];
         variabletrabajo = variabletrabajoLista[variabletrabajoLista.length-1];
 
@@ -502,5 +508,42 @@ ejecucionVisitor.prototype.visitMenorIgualQue = function (ctx) {
 ejecucionVisitor.prototype.visitReturnDef = function (ctx) {
     return this.visit(ctx.expr());
 }
+
+ejecucionVisitor.prototype.visitFactorNuevo = function (ctx) {
+    //NEW IDENTIFIER
+
+    var nombre = ctx.IDENTIFIER().getSymbol().text;
+
+    var temp = tablaClases.buscarClase(nombre);
+
+    retorno=tablaVariables.modificar(variabletrabajo,temp.tablaAtributos);
+    if (retorno == null){
+        var temporalito = buscarInterno(variabletrabajo);
+        if (temporalito != null) {
+            temporalito.valor = temp.tablaAtributos;
+        }
+    }
+
+    return null;
+
+}
+
+ejecucionVisitor.prototype.visitWriteDef = function (ctx) {
+    //WRITE PIZQ expr (COMA NUMBER)? PDER PUNTOCOMA
+
+    var expresion = this.visit(ctx.expr());
+    var valor = 0;
+    try {
+        valor = parseInt(ctx.NUMBER().getSymbol().text);
+    }
+    catch (e){}
+    var textArea = document.getElementById('consola');
+    var i = 0;
+    do {
+        i++;
+        textArea.value += '\n' + expresion;
+    }while (i<valor);
+    return null;
+}  
 
 exports.ejecucionVisitor = ejecucionVisitor;

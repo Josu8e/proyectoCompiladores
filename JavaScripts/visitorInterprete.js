@@ -14,7 +14,7 @@ function visitorInterprete() {
     gramarVisitor.call(this);
     tablaVariables = global.tablaVariables;
     tablaMetodos = global.tablaMetodos;
-    tablaClases = new almacenClases.almacenClases();
+    tablaClases = global.tablaClases;
     return this;
 }
 
@@ -207,5 +207,4 @@ visitorInterprete.prototype.visitIdT = function(ctx) {
 };
 
 exports.tablaVariables = tablaVariables;
-exports.tablaClases = tablaClases;
 exports.visitorInterprete = visitorInterprete;

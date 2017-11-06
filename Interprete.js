@@ -5,10 +5,11 @@ var interprete = require('JavaScripts/visitorInterprete');
 var ejecucion = require('JavaScripts/ejecucionVisitor');
 var almacenMetodos = require('JavaScripts/almacenMetodos');
 var almacenVariables = require('JavaScripts/almacenVariables')
+var almacenClases = require('JavaScripts/almacenClases');
 var tablaMetodos;
 var tablaVariables;
 var temporal;
-
+var tablaClases;
 
 function Interprete() {
 
@@ -26,7 +27,7 @@ function Interprete() {
 
     tablaMetodos =  new almacenMetodos.almacenMetodos();
     tablaVariables = new almacenVariables.almacenVariables();
-
+    tablaClases = new almacenClases.almacenClases();
 
     var tree = parser.program();
     var x = new interprete.visitorInterprete();
@@ -97,3 +98,4 @@ function limpiar() {
 }
 exports.temporal = temporal;
 exports.tablaMetodos = tablaMetodos;
+exports.tablaClases = tablaClases;
