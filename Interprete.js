@@ -92,6 +92,7 @@ function cargarFuncion() {
 
 }
 
+
 function limpiar() {
     var consola = document.getElementById("consola");
     consola.value=null;

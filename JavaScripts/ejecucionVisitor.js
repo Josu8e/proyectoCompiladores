@@ -6,6 +6,8 @@ var tablaMetodos;
 var listaHistorial = [];
 var variabletrabajoLista = [];
 var tablaClases;
+var posicion;
+var tipoAsig;
 
 
 function ejecucionVisitor() {
@@ -112,23 +114,15 @@ ejecucionVisitor.prototype.visitDesigClassdef = function(ctx) {
 
 
     //listas
-
-    var temp = tablaVariables.buscar(nombre);
-    if (temp == null) {
-        temp = buscarInterno(nombre);
-    }
-
     if(ctx.asigClass(0) != null) {
-        var expr = this.visit(ctx.asigClass(0));
+        posicion = this.visit(ctx.asigClass(0));
 
-        try {
-            var algo = this.visit(ctx.asignation());
-            temp.valor[expr] = algo;
-        }
-        catch (e) {
-            var textArea = document.getElementById('consola');
-            textArea.value = 'lista fuera de sus limites \n';
-        }
+
+        var algo = this.visit(ctx.asignation());
+
+        tipoAsig = null;
+        posicion = null;
+
     }
     else{
         var algo = this.visit(ctx.asignation());
@@ -140,11 +134,14 @@ ejecucionVisitor.prototype.visitDesigClassdef = function(ctx) {
 };
 
 
+
 ejecucionVisitor.prototype.visitAsignarClase = function (ctx) {
-    return 'clase';
+    tipoAsig = 'clase';
+    return ctx.IDENTIFIER().getSymbol().text;
 }
 
 ejecucionVisitor.prototype.visitAsignarLista = function (ctx) {
+    tipoAsig = 'lista';
     return this.visit(ctx.expr());
 }
 
@@ -221,7 +218,29 @@ ejecucionVisitor.prototype.visitExpresion = function(ctx) {
     if (retorno == null){
         var temp = buscarInterno(variabletrabajo);
         if (temp != null) {
-            temp.valor = dato;
+
+            if (typeof temp.valor == "object" && temp.valor != null){
+                if (tipoAsig == 'lista') {
+                    var tamaño = temp.valor.length
+                    if (tamaño > posicion)
+                        temp.valor[posicion] = dato;
+                    else {
+                        var textArea = document.getElementById('consola');
+                        textArea.value += 'lista fuera de sus limites \n';
+                    }
+                }
+                else if (tipoAsig == 'clase'){
+                    for(var i = 0;i<temp.valor.length;i++){
+                        if(temp.valor[i].nombre == posicion){
+                            temp.valor[i].valor = dato;
+                        }
+                    }
+                }
+
+            }else {
+                temp.valor = dato;
+            }
+            tipoAsig = null;
         }
     }
 
@@ -320,6 +339,20 @@ ejecucionVisitor.prototype.visitAsignador = function(ctx) {
         return algo;
 
     }
+    if (ctx.asigClass(0) != null) {
+        var retorno = this.visit(ctx.asigClass(0));
+        if (tipoAsig == 'clase') {
+            for (var i = 0; i < temp.valor.length; i++) {
+                if (temp.valor[i].nombre == retorno) {
+                    return temp.valor[i].valor;
+                }
+            }
+        }
+        else if (tipoAsig == 'lista') {
+            return temp.valor[retorno];
+        }
+    }
+
 
 
     return temp.valor;
@@ -623,6 +656,30 @@ ejecucionVisitor.prototype.visitWriteDef = function (ctx) {
         textArea.value += '\n' + expresion;
     }while (i<valor);
     return null;
-}  
+}
+
+
+
+//READ PIZQ IDENTIFIER (asigClass)* PDER PUNTOCOMA                              readDef
+ejecucionVisitor.prototype.visitReadDef = function (ctx) {
+    var name = ctx.IDENTIFIER().getSymbol().text;
+    var retorno = this.visit(ctx.asigClass(0));
+    var temp;
+    temp = tablaVariables.buscar(name);
+    if (temp == null){
+        temp = buscarInterno(name);
+    }
+    if(tipoAsig == 'clase'){
+        for (var i = 0;i<temp.valor.length;i++){
+            if (temp.valor[i].nombre == retorno){
+                return temp.valor[i].valor;
+            }
+        }
+    }
+    else if(tipoAsig == 'lista'){
+        return temp.valor[retorno];
+    }
+
+}
 
 exports.ejecucionVisitor = ejecucionVisitor;
