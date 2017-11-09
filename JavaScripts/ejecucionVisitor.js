@@ -54,6 +54,9 @@ ejecucionVisitor.prototype.visitVariable = function(ctx) {
 
     var id =  new Id(nombre,tipo);
     temporal.parametros.push(id);
+    var algo = ctx.PCDER();
+    if (algo != null)
+        id.valor = [];
 
 
     return null;
@@ -103,18 +106,52 @@ ejecucionVisitor.prototype.visitDesigClassdef = function(ctx) {
     variabletrabajo = nombre;
     variabletrabajoLista.push(nombre);
 
-    //toDo: falta saber que hacer si viene "objeto.atributo" o "lista[algo]"
 
-    var algo = this.visit(ctx.asignation());
+
+    //toDo: falta saber que hacer si viene "objeto.atributo"
+
+
+    //listas
+
+    var temp = tablaVariables.buscar(nombre);
+    if (temp == null) {
+        temp = buscarInterno(nombre);
+    }
+
+    if(ctx.asigClass(0) != null) {
+        var expr = this.visit(ctx.asigClass(0));
+
+        try {
+            var algo = this.visit(ctx.asignation());
+            temp.valor[expr] = algo;
+        }
+        catch (e) {
+            var textArea = document.getElementById('consola');
+            textArea.value = 'lista fuera de sus limites \n';
+        }
+    }
+    else{
+        var algo = this.visit(ctx.asignation());
+    }
+
     variabletrabajo = null
 
     return null;
 };
 
+
+ejecucionVisitor.prototype.visitAsignarClase = function (ctx) {
+    return 'clase';
+}
+
+ejecucionVisitor.prototype.visitAsignarLista = function (ctx) {
+    return this.visit(ctx.expr());
+}
+
+
 // Visit a parse tree produced by CParser#asignacion.
 ejecucionVisitor.prototype.visitAsignacion = function(ctx) {
-    this.visit(ctx.expr());
-    return null;
+    return this.visit(ctx.expr());
 };
 
 // Visit a parse tree produced by CParser#menosmenos.
@@ -216,15 +253,51 @@ ejecucionVisitor.prototype.visitTermino = function(ctx) {
 //fixme: not done
 ejecucionVisitor.prototype.visitAsignador = function(ctx) {
     var name = ctx.IDENTIFIER().getSymbol().text;
+
+    try {
+        var lista = this.visit(ctx.actPars());
+    }
+    catch (e){}
+    var textArea = document.getElementById('consola');
+    if (name == 'len'){
+        try {
+            return lista[0].length
+        }
+        catch (e){
+            textArea.value += lista[0]+' no tiene atributo len \n';
+            return null;
+        }
+    }
+    else if(name == 'ord'){
+        try {
+            return parseInt(lista[0]);
+        }
+        catch (e){
+            textArea.value += lista[0]+' convercion invalida \n';
+            return null;
+        }
+    }
+    else if(name=='chr'){
+        try{
+            return lista[0].toString();
+        }
+        catch (e){
+            textArea.value += lista[0]+' convercion invalida \n';
+            return null;
+        }
+    }
+
+
     var temp=tablaVariables.buscar(name);
     if (temp == null){
         temp = buscarInterno(name);
     }
+
+
     if(temp == null){
         temporal = tablaMetodos.buscar(name);
         listaHistorial.push(temporal);
         temp = temporal;
-        var lista=this.visit(ctx.actPars());
         for(var i=0; i<temp.parametros.length; i++){
             temp.parametros[i].valor = lista[i];
         }
@@ -370,9 +443,15 @@ ejecucionVisitor.prototype.visitLista = function (ctx) {
     var temp =  tablaMetodos.buscar(variabletrabajo);
     var param = this.visit(ctx.actPars());
 
-    temp.parametros = param;
-    var retorno = this.visit(temp.contexto);
-    return retorno;
+    if (variabletrabajo == 'add'){
+        param[0].push(param[1]);
+        return null;
+    }
+    else {
+        temp.parametros = param;
+        var retorno = this.visit(temp.contexto);
+        return retorno;
+    }
 }
 
 ejecucionVisitor.prototype.visitBreak = function (ctx) {
