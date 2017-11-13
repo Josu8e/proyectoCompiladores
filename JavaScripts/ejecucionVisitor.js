@@ -467,8 +467,27 @@ ejecucionVisitor.prototype.visitWhileDef = function (ctx) {
         }
     }
 }
-//todo: hasta que hagamos las listas podemos hace este
+
 ejecucionVisitor.prototype.visitForeachDef = function (ctx) {
+    //FOREACH PIZQ type IDENTIFIER IN IDENTIFIER PDER statement
+    var tipo = this.visit(ctx.type());
+    var nombre = ctx.IDENTIFIER(0).getSymbol().text;
+    var nombrLista = ctx.IDENTIFIER(1).getSymbol().text;
+    var temp = new Id(nombre,tipo);
+    temporal.parametros.push(temp);
+    var lista = tablaVariables.buscar(nombrLista);
+    if (lista == null){
+        lista = buscarInterno(nombrLista);
+    }
+    for(var i =0; i<lista.valor.length;i++){
+        temp.valor = lista.valor[i];
+        this.visit(ctx.statement());
+        if (breakVsitado){
+            break;
+        }
+    }
+
+
     return null;
 }
 

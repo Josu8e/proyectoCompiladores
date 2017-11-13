@@ -42,7 +42,7 @@ statement               : IDENTIFIER (asigClass)* asignation  PUNTOCOMA         
 		                | IF PIZQ condition PDER statement (ELSE statement )?                           #ifelseDef
 		                | FOR PIZQ expr PUNTOCOMA (condition)? PUNTOCOMA (statement)? PDER statement    #forDef
 		                | WHILE PIZQ condition PDER statement                                           #whileDef
-		                | FOREACH PIZQ IDENTIFIER IDENTIFIER IN IDENTIFIER PDER statement               #foreachDef
+		                | FOREACH PIZQ type IDENTIFIER IN IDENTIFIER PDER statement                     #foreachDef
 		                | BRAKE PUNTOCOMA                                                               #break
 		                | RETURN (expr)? PUNTOCOMA                                                      #returnDef
 		                | READ PIZQ IDENTIFIER (asigClass)* PDER PUNTOCOMA                              #readDef
